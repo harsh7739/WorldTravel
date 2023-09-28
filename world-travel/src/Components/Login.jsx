@@ -14,7 +14,7 @@ import { useToast } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { createAccount, loginUser } from "../Components/Redux/authReducer/action";
+import { loginUser,createAccount } from "../Components/Redux/authReducer/action";
 import {
   Modal,
   ModalOverlay,
@@ -45,39 +45,69 @@ export default function LoginAndRegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  let adminLogin = () => {
-    // dispatch(adminLogin({ email, password })) // Use the admin login action
-    //   .then(() => {
-    //     navigate("/admin");
-    //   })
-    //   .catch(() => {
-    //     toast({
-    //       title: "Invalid Admin Credentials",
-    //       description: "Please enter valid admin email and password.",
-    //       position: "top-center",
-    //       status: "error",
-    //       duration: 2000,
-    //       isClosable: true,
-    //     });
-    //   });
+  let adminLogin = async () => {
     const expectedAdminEmail = "admin@example.com";
     const expectedAdminPassword = "admin";
-
+  
     if (email === expectedAdminEmail && password === expectedAdminPassword) {
-      navigate("/admin");
-      onClose();
+      // Correct credentials, perform the login action
+      try {
+        await dispatch(adminLogin({ email, password }));
+        navigate("/admin");
+        alert("Login Successfully");
+        onClose();
+      } catch (error) {
+        console.error("Error during admin login:", error);
+        // alert("An error occurred during admin login.");
+      }
     } else {
-      toast({
-        title: "Invalid Admin Credentials",
-        description: "Please enter valid admin email and password.",
-        position: "top-center",
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-      });
+      // Incorrect credentials
+      alert("Please enter valid admin email and password.");
     }
   };
-  console.log(location);
+
+  
+  // const onLoginSubmit = (dat) => {
+  //   const email = dat.Email;
+  //   const password = dat.Password;
+  
+  //   const userData = { email, password };
+  
+  //   // Dispatch the loginUser action
+  //   dispatch(loginUser(userData))
+  //     .then(() => {
+  //       // If the promise resolves (login was successful), display a success message
+  //       toast({
+  //         title: "Login Successfully!",
+  //         position: "top-center",
+  //         status: "success",
+  //         duration: 2000,
+  //         isClosable: true,
+  //       });
+  //       alert("Login Successfully!");
+  
+  //       // Reset the login form
+  //       // hS1.reset();
+  
+  //       // You can perform additional actions here after successful login
+  //       navigate(location.state, { replace: true });
+  //     })
+  //     .catch((err) => {
+  //       // If the promise rejects (login failed), display an error message
+  //       console.error("Login Failed", err); // Log the error for debugging
+  //       toast({
+  //         title: "Login Failed",
+  //         description: "Please check your credentials",
+  //         position: "top-center",
+  //         status: "error",
+  //         duration: 2000,
+  //         isClosable: true,
+  //       });
+  //       alert("Please check your credentials");
+  //       dispatch({ type: LOGIN_FAILURE });
+  //     });
+  // };
+
   const onLoginSubmit = (dat) => {
     const email = dat.Email;
     const password = dat.Password;
@@ -86,13 +116,14 @@ export default function LoginAndRegisterPage() {
 
     dispatch(loginUser(userData))
       .then(() => {
-        toast({
-          title: "Login Successfully!",
-          position: "top-center",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-        });
+        // toast({
+        //   title: "Login Successfully!",
+        //   position: "top-center",
+        //   status: "success",
+        //   duration: 2000,
+        //   isClosable: true,
+        // });
+        alert("Login Successfully!");
         navigate(location.state, { replace: true });
         document.getElementById("loginform").reset();
       })
@@ -116,27 +147,31 @@ export default function LoginAndRegisterPage() {
 
     dispatch(createAccount(userData))
       .then(() => {
-        toast({
-          title: "Account Created Successfully.",
-          position: "top-center",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-        });
+        // toast({
+        //   title: "Account Created Successfully.",
+        //   position: "top-center",
+        //   status: "success",
+        //   duration: 2000,
+        //   isClosable: true,
+        // });
+        alert("Account Created Susscessfully!")
       })
       .catch(() => {
-        toast({
-          title: "Something went wrong!",
-          position: "top-center",
-          status: "error",
-          duration: 2000,
-          isClosable: true,
-        });
+        // toast({
+        //   title: "Something went wrong!",
+        //   position: "top-center",
+        //   status: "error",
+        //   duration: 2000,
+        //   isClosable: true,
+        // });
+        alert("Please check your credentials");
       });
 
     // document.getElementById("ca").reset();
     navigate("/");
   };
+  
+
 
   return (
     <Container>
@@ -152,14 +187,14 @@ export default function LoginAndRegisterPage() {
           <TabPanels>
             <TabPanel>
               <form action="" id="loginform" onSubmit={hS1(onLoginSubmit)}>
-                <label style={{ marginTop: "8px" }}>Enter your Email</label>
+                <label style={{ marginTop: "10px" }}>Enter your Email</label>
                 <input
                   autoComplete="off"
                   {...register1("Email", {
                     required: true,
                     pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                   })}
-                  placeholder="  Enter Email"
+                  placeholder="Enter Email"
                 />
                 {errors1?.Email?.type === "required" && (
                   <p>
@@ -172,10 +207,10 @@ export default function LoginAndRegisterPage() {
                   </p>
                 )}
 
-                <label style={{marginTop:"12px"}}>Enter your Password</label>
+                <label style={{ marginTop: "12px" }}>Enter your Password</label>
                 <input
                   type="password"
-                  placeholder="  Enter Password"
+                  placeholder="Enter Password"
                   autoComplete="off"
                   {...register1("Password", {
                     required: true,
@@ -208,13 +243,13 @@ export default function LoginAndRegisterPage() {
                     fontWeight: "bold",
                     textDecoration: "underline",
                     cursor: "pointer",
+                    marginBottom: "-18px",
                   }}
-                  onClick={onOpen}
-                >
+                  onClick={onOpen}>
                   Login As Admin
                 </small>
                 <br />
-                <input type="submit" className="submitBtn"/>
+                <input type="submit" className="submitBtn" />
               </form>
             </TabPanel>
             <TabPanel>
@@ -251,7 +286,7 @@ export default function LoginAndRegisterPage() {
                   </p>
                 )}
 
-                <label>Enter your Email</label>
+                <label style={{marginTop:"2px"}}>Enter your Email</label>
                 <input
                   autoComplete="off"
                   {...register("Email", {
@@ -301,88 +336,92 @@ export default function LoginAndRegisterPage() {
             </TabPanel>
           </TabPanels>
         </Tabs>
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <ModalOverlay />
-          <ModalContent>
-            <ModalCloseButton />
-            <ModalBody padding="15%" mt="auto">
-              <h1
-                class="login-title"
-                style={{
-                  textAlign: "center",
-                  paddingBottom: "20px",
-                  fontSize: "30px",
-                  fontWeight: "bold",
-                }}
-              >
-                Admin Login
-              </h1>
-              <form
-                class="login_form"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "20px",
-                  fontSize: "20px",
-                }}
-              >
-                <div>
-                  <label for="email">Email </label>
-                  <br />
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="me@example.com"
-                    name="email"
-                    required
-                    style={{
-                      backgroundColor: "transparent",
-                      height: "50px",
-                      marginTop: "15px",
-                      marginBottom: "10px",
-                      border: "1px solid",
-                      padding: "10px",
-                      borderRadius: "10px",
-                      width: "100%",
-                    }}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label for="password">Password </label>
-                  <br />
-                  <input
-                    id="password"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    required
-                    style={{
-                      backgroundColor: "transparent",
-                      height: "50px",
-                      marginTop: "15px",
-                      marginBottom: "10px",
-                      border: "1px solid",
-                      padding: "10px",
-                      borderRadius: "10px",
-                      width: "100%",
-                    }}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <Button
-                  background="black"
-                  _hover={{ bg: "black" }}
-                  onClick={adminLogin}
-                  color="white"
-                  type="submit"
+          <ModalContent style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <DVIV>
+
+              <ModalBody className="modalBody" style={{ width: "400px", backgroundColor: "white", border: "2px solid black" }}>
+                <ModalCloseButton style={{ marginLeft: "360px", marginTop: "15px" }} />
+                <h1
+                  className="login-title"
+                  style={{
+                    textAlign: "center",
+                    paddingBottom: "20px",
+                    fontSize: "30px",
+                    fontWeight: "bold",
+                  }}
                 >
-                  Log in
-                </Button>
-              </form>
-            </ModalBody>
+                  Admin Login
+                </h1>
+                <form
+                  className="login_form"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "20px",
+                    fontSize: "20px",
+                  }}
+                >
+                  <div style={{ margin: "auto", marginTop: "-20px" }}>
+                    <label htmlFor="email">Email </label>
+                    <br />
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="me@example.com"
+                      name="email"
+                      required
+                      style={{
+                        backgroundColor: "transparent",
+                        height: "50px",
+                        marginTop: "15px",
+                        marginBottom: "10px",
+                        border: "1px solid",
+                        borderRadius: "10px",
+                      }}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div style={{ margin: "auto" }}>
+                    <label htmlFor="password" style={{ textAlign: "center", margin: "auto" }}>Password </label>
+                    <br />
+                    <input
+                      id="password"
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      required
+                      style={{
+                        backgroundColor: "transparent",
+                        height: "50px",
+                        marginTop: "15px",
+                        marginBottom: "10px",
+                        border: "1px solid",
+                        borderRadius: "10px",
+                        // margin: "auto"
+                      }}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <Button style={{ margin: "auto", width: "100px", borderRadius: "20px", height: "50px", marginBottom: "20px" }}
+                    background="black"
+                    _hover={{ bg: "black" }}
+                    onClick={adminLogin}
+                    color="white"
+                    type="submit"
+                  >
+                    <b>Log in</b>
+                  </Button>
+                </form>
+              </ModalBody>
+            </DVIV>
+
           </ModalContent>
         </Modal>
+
+
+
       </DIV>
     </Container>
     // </div>
@@ -439,10 +478,11 @@ const DIV = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     button {
       width: 150px;
       color: black;
-     background-color:transparent;
+      background-color:transparent;
       border:none;
       height: 35px;
       font-size:large;
@@ -461,16 +501,20 @@ const DIV = styled.div`
       flex-direction: column;
       color: black;
       margin-top:20px;
-      
+
+      input {
+  text-indent: 10px; 
+  font-size:17px
+}
       input,
       button {
 
         background-color: transparent;
-        height: 50px;
+        height: 45px;
         margin-top: 15px;
         margin-bottom: 10px;
         border: 1px solid;
-        padding: 3px;
+        /* padding: 2px; */
         border-radius: 10px;
       }
        .submitBtn{
@@ -495,6 +539,8 @@ const DIV = styled.div`
         padding-bottom: 5px;
         color: red;
       }
+     
+    
     }
   }
   @media screen and (min-width: 1024px) {
@@ -519,3 +565,30 @@ const DIV = styled.div`
   }
 `;
 
+const DVIV = styled.div
+  ` 
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    
+    
+  input{
+    height:10px;
+    width:300px;
+  
+      text-indent: 10px; 
+      font-size:17px
+    
+  }
+  ModalBody
+  {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin:center;
+    margin-top:200px
+   
+  }
+`;
