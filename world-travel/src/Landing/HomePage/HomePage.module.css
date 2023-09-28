@@ -1,0 +1,30 @@
+
+
+.main_cont{
+    width: 100%;
+    height: 100vh;
+  
+}
+
+.img_tag{
+    width: 100%;
+    height: 100%;
+}
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+       
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+      }
+.heading1st{
+    font-size: 47px;
+}
+.top_deal{
+    text-align: center;
+    /* margin-top: 50px; */
+    margin: 50px 0px 50px 0px ;
+}
