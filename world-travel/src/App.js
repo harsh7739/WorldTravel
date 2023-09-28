@@ -11,12 +11,6 @@ import HomeMainRoute from "./Landing/Routes/HomeMainRoute";
 function App() {
   return (
     <div className="App" >
-  {/* <Message /> */}
-  {/* <About /> */}
-    {/* <Login/> */}
-    {/* <HomePage /> */}
-    {/* <HomeNavbar /> */}
-    <HomeMainRoute />
 
     </div>
   );
