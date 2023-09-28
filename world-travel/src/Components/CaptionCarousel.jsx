@@ -4,9 +4,9 @@ import React,{useState} from 'react'
 import { Box } from '@chakra-ui/react'
 import Slider from 'react-slick'
 
- import Japan from "../Components/Image/japan.jpeg";
-import mount from "../Components/Image/mount.jpeg"
-import tour from "../Components/Image/tour.jpeg";
+ import beach from "../Components/Image/beach.avif";
+import falls from "../Components/Image/falls.avif"
+import mount from "../Components/Image/mount.avif";
 
 const settings = {
   dots: true,
@@ -24,8 +24,8 @@ export default function Carousel() {
 
   const [slider, setSlider] =useState([])
 
-  const cards = [
-   tour,Japan,mount
+  const cards  = [
+   mount,falls,beach
   ]
 
   return (
@@ -50,7 +50,8 @@ export default function Carousel() {
         {cards.map((url, index) => (
           <Box
             key={index}
-            height={'466px'}
+            className="card-image"
+            height={'438px'}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
@@ -59,9 +60,12 @@ export default function Carousel() {
             width={"100%"} 
             marginBottom={"2px"}
             backgroundImage={`url(${url})`}
+            // style={{width:"100%"}}
             // border={"1px solid red"}
           />
+
         ))}
+        
       </Slider>
      
     </Box>

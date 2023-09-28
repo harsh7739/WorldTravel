@@ -1,18 +1,14 @@
 import axios from "axios";
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actionTypes"
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actionTypes";
 
-let URL = "https://furlinko.onrender.com/users";
-
-
-
-export const loginUser = (email, password) => (dispatch) => {
+export const loginUser = (userData) => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
 
   return axios
-    .post(`${URL}`, { email, password })
+    .post("https://destination-cw4.onrender.com/login", userData) // Use POST instead of GET for login
     .then((res) => {
       console.log("login success", res.data);
-      dispatch({ type: LOGIN_SUCCESS, payload: { email, password } }); 
+      dispatch({ type: LOGIN_SUCCESS, payload: { userData } });
     })
     .catch((err) => {
       console.log("login failure", err);
@@ -20,16 +16,16 @@ export const loginUser = (email, password) => (dispatch) => {
     });
 };
 
+export const createAccount = (userData) => (dispatch) => {
+  dispatch({ type: LOGIN_REQUEST });
 
-export const createAccount = (payload) => (dispatch) =>{
-        dispatch({type:LOGIN_REQUEST});
-      
-   return axios.post(`${URL}`,payload).then((res)=>{
-      console.log("account created",res.data);
-      dispatch({type:SIGNUP_SUCCESS});
-    }).catch((err)=>{
-      dispatch({type:LOGIN_FAILURE})
+  return axios
+    .post("https://destination-cw4.onrender.com/users", userData)
+    .then((res) => {
+      console.log("account created", res.data);
+      dispatch({ type: SIGNUP_SUCCESS });
     })
-   
-}
-
+    .catch((err) => {
+      dispatch({ type: LOGIN_FAILURE });
+    });
+};
