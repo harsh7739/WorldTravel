@@ -2,8 +2,9 @@ import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 import Destination from '../Destination Page/Destination'
 import SinlgeDestination from '../Destination Page/SinlgeDestination'
-import Admin from '../Components/Admin/Admin'
-import { AdminProducts } from '../Components/Admin/AdminProducts'
+
+import SingleHotel from '../Destination Page/SingleHotel'
+
 
 const AllRoutes = () => {
   return (
@@ -11,8 +12,9 @@ const AllRoutes = () => {
         <Routes>
             <Route path='/' element={<Destination />} />
             <Route path='/destination/:id' element={<SinlgeDestination />} />
-            <Route path='/admin' element={<Admin />} />
-            <Route path='/adminproducts' element={<AdminProducts />} />
+
+            <Route path='/hotel/:hotel_id' element={<SingleHotel />} />
+
         </Routes>
     </>
   )

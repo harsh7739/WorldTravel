@@ -14,8 +14,16 @@ export const getDestination = (dispatch) => {
 export const getSingleDestination = (id) => (dispatch) => {
     dispatch({type : "GET_REQUEST"})
     axios.get(`https://destination-cw4.onrender.com/destinations/${id}`).then((res) => {
-        console.log(res.data)
         dispatch({type : "GET_SINGLE_SUCCESS", payload : res.data})
+    }).catch((err) => {
+        dispatch({type : "GET_FAILURE"})
+    })
+}
+
+export const getSingleHotel = (id) => (dispatch) => {
+    dispatch({type : "GET_REQUEST"})
+    axios.get(`https://destination-cw4.onrender.com/hotels/${id}`).then((res) => {
+        dispatch({type : "GET_HOTEL_SUCCESS", payload : res.data})
     }).catch((err) => {
         dispatch({type : "GET_FAILURE"})
     })
