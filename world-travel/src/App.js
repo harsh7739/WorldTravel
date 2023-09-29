@@ -5,6 +5,7 @@ import About from "./Landing/About/About";
 import HomePage from "./Landing/HomePage/HomePage";
 import HomeNavbar from "./Landing/Routes/HomeNavbar";
 import HomeMainRoute from "./Landing/Routes/HomeMainRoute";
+import Destination from "./Destination Page/Destination";
 
 function App() {
   return (

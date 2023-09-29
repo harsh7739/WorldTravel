@@ -13,7 +13,7 @@
 
     .centered {
         position: absolute;
-        top: 50%;
+        top: 18%;
         left: 50%;
        
         transform: translate(-50%, -50%);
@@ -27,4 +27,19 @@
     text-align: center;
     /* margin-top: 50px; */
     margin: 50px 0px 50px 0px ;
+}
+
+
+
+.book_with_us{
+    text-align: center;
+    margin-top: 56px;
+    margin-bottom: 56px;
+}
+/* style={{width:"50px",margin:"auto",border:"1px solid black",marginTop:"30px"}} */
+.hrTag{
+   width: 50px;
+   margin: auto;
+   margin-top: 28px;
+   border: 1px solid rgb(8, 8, 240);
 }
