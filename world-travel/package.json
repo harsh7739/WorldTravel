@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/icons": "^2.1.0",
     "@chakra-ui/portal": "^2.1.0",
     "@chakra-ui/react": "^2.8.1",
     "@chakra-ui/spinner": "^2.1.0",
@@ -16,6 +15,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.0",
+    "bootstrap-icons": "^1.11.1",
     "framer-motion": "^10.16.4",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
@@ -25,6 +25,7 @@
     "react-leaflet": "^4.2.1",
     "react-leaflet-cluster": "^2.1.0",
     "react-redux": "^8.1.2",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",

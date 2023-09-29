@@ -11,6 +11,7 @@ import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
 import MarkerClusterGroup from "react-leaflet-cluster";
 import Hotels from './Hotels';
+import Loading from './Loading';
 
 const SinlgeDestination = () => {
 
@@ -33,18 +34,21 @@ const SinlgeDestination = () => {
   const [center, setCenter] = useState([-33.868601490430436, 151.20857757563576]);
   const [data, setData] = useState([]);
   const [hotel, setHotel] = useState([]);
+  const [load, setLoad] = useState(false)
 
   useEffect(() => {
     // dispatch(getSingleDestination(id))
+    setLoad(true)
     axios.get(`https://destination-cw4.onrender.com/destinations/${id}`).then((res) => {
-      console.log(res.data)
       setData(res.data)
+      setLoad(false)
       setCenter(res.data.coordinates)
     }).catch((err) => {
       console.log(err)
     })
 
     axios.get(`https://destination-cw4.onrender.com/hotels`).then((res) => {
+      console.log(res.data)
       setHotel(res.data)
     }).catch((err) => {
       console.log(err)
@@ -52,6 +56,10 @@ const SinlgeDestination = () => {
   }, [])
 
   console.log(center)
+
+  if(load) {
+    return <Loading />
+  }
 
   return (
     <DIV>

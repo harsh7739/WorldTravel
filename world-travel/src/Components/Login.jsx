@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import styled from "styled-components";
 import { RiErrorWarningFill } from "react-icons/ri";
 import {
@@ -14,7 +17,7 @@ import { useToast } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { loginUser,createAccount } from "../Components/Redux/authReducer/action";
+import { loginUser, createAccount } from "../Components/Redux/authReducer/action";
 import {
   Modal,
   ModalOverlay,
@@ -24,13 +27,27 @@ import {
 } from "@chakra-ui/react";
 
 import CaptionCarousel from "../Components/CaptionCarousel";
-import { LOGIN_FAILURE } from "../Components/Redux/authReducer/actionTypes";
+import { LOGIN_FAILURE, LOGIN_SUCCESS } from "../Components/Redux/authReducer/actionTypes";
 
 export default function LoginAndRegisterPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const toast = useToast();
+
+  const showSuccessToast = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 5000,
+    });
+  };
+
+  const showErrorToast = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 5000,
+    });
+  };
+
   const {
     register,
     handleSubmit,
@@ -48,132 +65,63 @@ export default function LoginAndRegisterPage() {
   let adminLogin = async () => {
     const expectedAdminEmail = "admin@example.com";
     const expectedAdminPassword = "admin";
-  
+
     if (email === expectedAdminEmail && password === expectedAdminPassword) {
-      // Correct credentials, perform the login action
       try {
         await dispatch(adminLogin({ email, password }));
         navigate("/admin");
-        alert("Login Successfully");
+        showSuccessToast("Login Successfully!");
         onClose();
       } catch (error) {
+        showErrorToast("An error occurred during admin login.");
         console.error("Error during admin login:", error);
-        // alert("An error occurred during admin login.");
       }
     } else {
-      // Incorrect credentials
-      alert("Please enter valid admin email and password.");
+      showErrorToast("Please enter valid admin email and password.");
     }
   };
-
-  
-  // const onLoginSubmit = (dat) => {
-  //   const email = dat.Email;
-  //   const password = dat.Password;
-  
-  //   const userData = { email, password };
-  
-  //   // Dispatch the loginUser action
-  //   dispatch(loginUser(userData))
-  //     .then(() => {
-  //       // If the promise resolves (login was successful), display a success message
-  //       toast({
-  //         title: "Login Successfully!",
-  //         position: "top-center",
-  //         status: "success",
-  //         duration: 2000,
-  //         isClosable: true,
-  //       });
-  //       alert("Login Successfully!");
-  
-  //       // Reset the login form
-  //       // hS1.reset();
-  
-  //       // You can perform additional actions here after successful login
-  //       navigate(location.state, { replace: true });
-  //     })
-  //     .catch((err) => {
-  //       // If the promise rejects (login failed), display an error message
-  //       console.error("Login Failed", err); // Log the error for debugging
-  //       toast({
-  //         title: "Login Failed",
-  //         description: "Please check your credentials",
-  //         position: "top-center",
-  //         status: "error",
-  //         duration: 2000,
-  //         isClosable: true,
-  //       });
-  //       alert("Please check your credentials");
-  //       dispatch({ type: LOGIN_FAILURE });
-  //     });
-  // };
 
   const onLoginSubmit = (dat) => {
     const email = dat.Email;
     const password = dat.Password;
 
-    const userData = { email, password };
-
-    dispatch(loginUser(userData))
-      .then(() => {
-        // toast({
-        //   title: "Login Successfully!",
-        //   position: "top-center",
-        //   status: "success",
-        //   duration: 2000,
-        //   isClosable: true,
-        // });
-        alert("Login Successfully!");
-        navigate(location.state, { replace: true });
-        document.getElementById("loginform").reset();
-      })
-      .catch((err) => {
-        // console.log("err", err);
-        toast({
-          title: "Login Failed",
-          description: "Please check your credentials",
-          position: "top-center",
-          status: "error",
-          duration: 2000,
-          isClosable: true,
-        });
-        dispatch({ type: LOGIN_FAILURE });
-      });
-  };
-
-  const onAccountCreateSubmit = (data) => {
-    const { Name, Email, Password } = data;
-    const userData = { name: Name, email: Email, password: Password };
-
-    dispatch(createAccount(userData))
-      .then(() => {
-        // toast({
-        //   title: "Account Created Successfully.",
-        //   position: "top-center",
-        //   status: "success",
-        //   duration: 2000,
-        //   isClosable: true,
-        // });
-        alert("Account Created Susscessfully!")
+    dispatch(loginUser(email))
+      .then((userData) => {
+        if (userData && userData.password === password) {
+          showSuccessToast("Login Successfully!");
+          navigate("/");
+          document.getElementById("loginform").reset();
+        } else {
+          showErrorToast("Invalid email or password"); // Changed error message
+        }
       })
       .catch(() => {
-        // toast({
-        //   title: "Something went wrong!",
-        //   position: "top-center",
-        //   status: "error",
-        //   duration: 2000,
-        //   isClosable: true,
-        // });
-        alert("Please check your credentials");
+        showErrorToast("Account Not Found. Create a new account");
+      });
+  };
+  const onAccountCreateSubmit = (data) => {
+    let obj = {
+      name: data.Name,
+      id: data.Email,
+      password: data.Password,
+
+    };
+
+    dispatch(createAccount(obj))
+      .then(() => {
+        showSuccessToast("Account Created Successfully.");
+      })
+      .catch(() => {
+        showErrorToast("Something went wrong!");
       });
 
-    // document.getElementById("ca").reset();
-    navigate("/");
+    document.getElementById("ca").reset();
   };
-  
+
 
 
   return (
+
     <Container>
       <STYLEDIV>
         <CaptionCarousel />
@@ -188,51 +136,22 @@ export default function LoginAndRegisterPage() {
             <TabPanel>
               <form action="" id="loginform" onSubmit={hS1(onLoginSubmit)}>
                 <label style={{ marginTop: "10px" }}>Enter your Email</label>
-                <input
+                <input required
                   autoComplete="off"
                   {...register1("Email", {
-                    required: true,
-                    pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                   })}
                   placeholder="Enter Email"
                 />
-                {errors1?.Email?.type === "required" && (
-                  <p>
-                    <RiErrorWarningFill /> This field is required
-                  </p>
-                )}
-                {errors1?.Email?.type === "pattern" && (
-                  <p>
-                    <RiErrorWarningFill /> Invalid email address
-                  </p>
-                )}
 
                 <label style={{ marginTop: "12px" }}>Enter your Password</label>
-                <input
+                <input required
                   type="password"
                   placeholder="Enter Password"
                   autoComplete="off"
                   {...register1("Password", {
-                    required: true,
-                    minLength: 6,
-                    maxLength: 6,
                   })}
                 />
-                {errors1?.Password?.type === "required" && (
-                  <p>
-                    <RiErrorWarningFill /> This field is required
-                  </p>
-                )}
-                {errors1?.Password?.type === "minLength" && (
-                  <p>
-                    <RiErrorWarningFill /> Password must be 6 characters
-                  </p>
-                )}
-                {errors1?.Password?.type === "maxLength" && (
-                  <p>
-                    <RiErrorWarningFill /> Password must be 6 characters
-                  </p>
-                )}
+
                 <br />
                 <small
                   style={{
@@ -255,81 +174,26 @@ export default function LoginAndRegisterPage() {
             <TabPanel>
               <form id="ca" onSubmit={handleSubmit(onAccountCreateSubmit)}>
                 <label>Enter your Name</label>
-                <input
+                <input required
                   autoComplete="off"
                   {...register("Name", {
-                    required: true,
-                    autoComplete: "off",
-                    maxLength: 20,
-                    minLength: 3,
-                    pattern: /^[A-Za-z]+$/i,
                   })}
                 />
-                {errors?.Name?.type === "required" && (
-                  <p>
-                    <RiErrorWarningFill /> This field is required
-                  </p>
-                )}
-                {errors?.Name?.type === "maxLength" && (
-                  <p>
-                    <RiErrorWarningFill /> Name cannot exceed 20 characters
-                  </p>
-                )}
-                {errors?.Name?.type === "minLength" && (
-                  <p>
-                    <RiErrorWarningFill /> Name must be at 3 characters
-                  </p>
-                )}
-                {errors?.Name?.type === "pattern" && (
-                  <p>
-                    <RiErrorWarningFill /> Alphabetical characters only
-                  </p>
-                )}
 
-                <label style={{marginTop:"2px"}}>Enter your Email</label>
-                <input
+                <label style={{ marginTop: "2px" }}>Enter your Email</label>
+                <input required
                   autoComplete="off"
                   {...register("Email", {
-                    required: true,
-                    pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                   })}
                 />
-                {errors?.Email?.type === "required" && (
-                  <p>
-                    <RiErrorWarningFill /> This field is required
-                  </p>
-                )}
-                {errors?.Email?.type === "pattern" && (
-                  <p>
-                    <RiErrorWarningFill /> Invalid email address
-                  </p>
-                )}
 
                 <label>Create your Password</label>
-                <input
+                <input required
                   type="password"
                   autoComplete="off"
                   {...register("Password", {
-                    required: true,
-                    minLength: 6,
-                    maxLength: 6,
                   })}
                 />
-                {errors?.Password?.type === "required" && (
-                  <p>
-                    <RiErrorWarningFill /> This field is required
-                  </p>
-                )}
-                {errors?.Password?.type === "minLength" && (
-                  <p>
-                    <RiErrorWarningFill /> Password must be 6 characters
-                  </p>
-                )}
-                {errors?.Password?.type === "maxLength" && (
-                  <p>
-                    <RiErrorWarningFill /> Password must be 6 characters
-                  </p>
-                )}
 
                 <button type="submit" className="submitBtn">Submit</button>
               </form>
@@ -399,7 +263,6 @@ export default function LoginAndRegisterPage() {
                         marginBottom: "10px",
                         border: "1px solid",
                         borderRadius: "10px",
-                        // margin: "auto"
                       }}
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -423,8 +286,23 @@ export default function LoginAndRegisterPage() {
 
 
       </DIV>
+      <ToastContainer
+        position="top-center"
+        margin="auto"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+
+      />
     </Container>
-    // </div>
+
+
+
   );
 }
 const Container = styled.div`
@@ -468,11 +346,8 @@ const DIV = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
- 
-  /* padding: 20px; */
 
   #modal {
-    /* margin-top:"-5px"; */
     border: 2px solid black;
     padding: 20px;
     display: flex;
@@ -503,9 +378,9 @@ const DIV = styled.div`
       margin-top:20px;
 
       input {
-  text-indent: 10px; 
-  font-size:17px
-}
+        text-indent: 10px; 
+        font-size:17px
+      }
       input,
       button {
 
@@ -514,7 +389,6 @@ const DIV = styled.div`
         margin-top: 15px;
         margin-bottom: 10px;
         border: 1px solid;
-        /* padding: 2px; */
         border-radius: 10px;
       }
        .submitBtn{
