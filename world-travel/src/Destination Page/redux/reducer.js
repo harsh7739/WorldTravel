@@ -2,7 +2,8 @@ const initialState = {
     isLoading : false,
     isError : false,
     destinations : [],
-    destination : {}
+    destination : {},
+    hotel : {}
 }
 
 export const reducer = (state = initialState, {type, payload}) => {
@@ -31,6 +32,13 @@ export const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 destination : payload
+            }
+        }
+        case "GET_HOTEL_SUCCESS" : {
+            return {
+                ...state,
+                hotel : payload,
+                isLoading : false,
             }
         }
         default : {
