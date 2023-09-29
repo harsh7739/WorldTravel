@@ -3,7 +3,7 @@
 import React,{useState} from 'react'
 import { Box } from '@chakra-ui/react'
 import Slider from 'react-slick'
-import { Navigate, useNavigate } from 'react-router-dom'
+
 
 
 
