@@ -3,6 +3,7 @@ import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./a
 const URL = "https://destination-cw4.onrender.com";
 
 export const loginUser = (email) => (dispatch) => {
+  console.log(email)
   dispatch({ type: LOGIN_REQUEST });
 
   return axios

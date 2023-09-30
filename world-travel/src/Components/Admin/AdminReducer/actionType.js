@@ -6,3 +6,5 @@ export const ERROR='ERROR'
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const EDIT_SUCCESS = "EDIT_SUCCESS";
 export const REQUEST='REQUEST'
+export const ADD_NEW_USERS = "ADD_NEW_USERS"
+export const DELETE_USER = "DELETE_USER"

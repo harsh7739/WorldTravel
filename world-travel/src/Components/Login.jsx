@@ -101,8 +101,9 @@ export default function LoginAndRegisterPage() {
   };
   const onAccountCreateSubmit = (data) => {
     let obj = {
+    
       name: data.Name,
-      id: data.Email,
+       id: data.Email, 
       password: data.Password,
 
     };

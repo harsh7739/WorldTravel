@@ -51,7 +51,7 @@ export default function Carousel() {
           <Box
             key={index}
             className="card-image"
-            height={'438px'}
+            height={'469px'}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
