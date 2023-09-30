@@ -1,8 +1,11 @@
+import { ADD_NEW_USERS, DELETE_USER } from "./actionType"
+
 const initialState = {
   isLoading : false,
   isError : false,
   destinations : [],
-  destination : {}
+  destination : {},
+  users: []
 }
 
 export const reducer = (state = initialState, {type, payload}) => {
@@ -55,7 +58,19 @@ export const reducer = (state = initialState, {type, payload}) => {
         destinations : payload
     }
 }
-    
+case ADD_NEW_USERS:
+    return {
+      ...state,
+      isLoading: false,
+      users:  payload,
+    };
+case DELETE_USER:
+    return {
+        ...state,
+        isLoading: false,
+        users: payload
+
+    }
       default : {
           return state
       }
