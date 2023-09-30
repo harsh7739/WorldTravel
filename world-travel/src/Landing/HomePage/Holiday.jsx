@@ -115,7 +115,7 @@ margin: auto;
 
 
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
         .mainCont{
     width: 80%;
     display: grid;

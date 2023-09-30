@@ -43,3 +43,14 @@
    margin-top: 28px;
    border: 1px solid rgb(8, 8, 240);
 }
+@media screen and (max-width: 400px) {
+    .centered {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+       
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+      }
+}

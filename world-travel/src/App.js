@@ -9,12 +9,14 @@ import HomeMainRoute from "./Landing/Routes/HomeMainRoute";
 import Destination from "./Destination Page/Destination";
 
 import AllRoutes from './MainRoutes/AllRoutes'
+import Checkout from './Landing/checkout/Checkout';
 
 
 function App() {
   return (
     <div className="App" >
-
+    {/* <HomeMainRoute /> */}
+    <Checkout />
     </div>
   );
 }
