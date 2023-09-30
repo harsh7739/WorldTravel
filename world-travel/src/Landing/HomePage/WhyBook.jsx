@@ -171,7 +171,7 @@ const DIV = styled.div`
     grid-template-columns: repeat(2,1fr);
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
     width: 90%;
     margin: auto;
     display: grid;

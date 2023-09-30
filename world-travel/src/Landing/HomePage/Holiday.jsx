@@ -133,6 +133,25 @@ const DIV = styled.div`
     } */
   }
 
+
+
+
+
+@media screen and (max-width: 400px) {
+        .mainCont{
+    width: 80%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(1,1fr);
+    margin: auto;
+}
+.contain{
+        position: relative;
+        font-family: Arial;
+        height: 320px;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+        cursor: pointer;
+}
   @media screen and (max-width: 635px) {
     .mainCont {
       width: 90%;
@@ -140,6 +159,7 @@ const DIV = styled.div`
       gap: 10px;
       grid-template-columns: repeat(1, 1fr);
       margin: auto;
+
     }
     .contain {
       position: relative;
