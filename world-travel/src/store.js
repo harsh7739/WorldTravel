@@ -7,7 +7,8 @@ import { applyMiddleware, combineReducers, legacy_createStore } from "redux"
 import { reducer as destinationReducer } from './Destination Page/redux/reducer'
 
 
-const rootReducer = combineReducers({loginReducer, destinationReducer,adminReducer})
+
+const rootReducer = combineReducers({loginReducer, destinationReducer, adminReducer})
 
 const store=legacy_createStore(rootReducer,applyMiddleware(thunk))
 
