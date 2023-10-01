@@ -21,28 +21,36 @@ const DestinationsContainer = () => {
         dispatch(getDestination)
     }, [])
 
-    if(isLoading) {
-        return <Loading />
-    }
 
     return (
         <>
-            <div className='my-3' style={{ textAlign: 'center' }} >
-                <HEADING >Popular Destination <span>For now</span> </HEADING>
-            </div>
+            <HERO className="container-fluid" >
+
+            </HERO>
+
             <div className='container-fluid d-flex pt-0' >
                 <div className='row' >
                     <div className='col-md-3' >
                         <Filter />
                     </div>
                     <div className='col-md-9' >
-                        <DIV>
-                            {
-                                destinations?.length > 0 && destinations?.map((ele) => (
-                                    <DestinationCard key={ele.id} {...ele} />
-                                ))
-                            }
-                        </DIV>
+                        {
+                            isLoading ?
+                                <Loading />
+                                :
+                                <div>
+                                    <div className='my-3' style={{ textAlign: 'center' }} >
+                                        <HEADING >Popular Destination <span>For you</span> </HEADING>
+                                    </div>
+                                    <DIV>
+                                        {
+                                            destinations?.length > 0 && destinations?.map((ele) => (
+                                                <DestinationCard key={ele.id} {...ele} />
+                                            ))
+                                        }
+                                    </DIV>
+                                </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -55,9 +63,18 @@ export default DestinationsContainer
 const DIV = styled.div`
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 70px;
     margin: 20px;
+
+    @media screen and (max-width : 1192px) and (min-width : 1051px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width : 1050px) and (min-width : 800px) {
+        
+    }
+
 `
 
 const HEADING = styled.h1`
@@ -70,4 +87,9 @@ const HEADING = styled.h1`
         font-weight: bold;
     }
 `
+const HERO = styled.div`
 
+    height : 20vh;
+    /* background-color: #567EB9; */
+
+`

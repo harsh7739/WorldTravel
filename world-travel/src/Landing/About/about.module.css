@@ -1,13 +1,12 @@
 .content_div{
-    width: 90%;
-    margin: auto;
-    padding: 15px;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     text-align: justify;
+    border-radius: 10px;
 }
 .next_Target_heading{
     color: rgb(113, 109, 109);
-    
+    font-weight: bold;
+    text-align: center;
 }
 .main_cont{
     width: 90%;
@@ -21,19 +20,27 @@
     width: 30%;
     text-align: justify;
     border: 1px solid rgb(215, 210, 210);
-   
-    padding: 75px 15px 75px 15px;
 }
 .image_div{
     text-align: center;
     
+    
 }
 .img_tag{
-    width: 100px;
+    text-align: center;
     margin: auto;
-    background-color: #0F609F;
-   border-radius: 50%;
-   
+    padding: 20px;
+    /* width: 100px;
+    margin: auto;
+    background-color: #0F609F;*/
+   /* border-radius: 50%; 
+   border : 1px solid black; */
+}
+
+.img_tag svg {
+    border: 1px solid black;
+    border-radius: 50%; 
+    margin: auto;
 }
 .h2_tag{
     color:  #0F609F ;
@@ -57,8 +64,6 @@
     width: 30%;
     text-align: justify;
     border: 1px solid rgb(245, 243, 243);
-   
-    padding: 0px 15px 35px 15px;
   }
 
   .finan_heading{

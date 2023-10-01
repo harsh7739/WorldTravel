@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const Filter = () => {
   return (
-    <FILTER>
+    <FILTER className="p-4" >
       <HEADING >Filters  <span>For Better Search</span> </HEADING>
       <INPUT className='my-3' >
           <label>
@@ -49,12 +49,15 @@ const Filter = () => {
 export default Filter
 
 const FILTER = styled.div`
-padding-top: 15px;
-  height: 50vh;
+/* padding-top: 15px;
+  height: 30vh;
   text-align: center;
   position: fixed;
-  width: inherit;
-  border: 1px solid red;
+   width: inherit;
+  top : 20%; 
+ width : inherit; */
+  text-align : center;
+
 `
 
 const HEADING = styled.h2`
@@ -112,6 +115,7 @@ const INPUT = styled.div`
     border-radius: 5px;
     height: 40px;
     width: 270px;
+    text-align : center;
   }
 
 `

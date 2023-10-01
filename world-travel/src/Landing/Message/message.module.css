@@ -1,6 +1,5 @@
 .main{
-    color: aqua;
-    width: 100%;
+    background-color: #5278B0;
 }
 .founder_image{
     width: 100%;
@@ -8,13 +7,17 @@
 .content_div{
     width: 90%;
     margin: auto;
+    border-radius: 10px;
     background-color: rgb(240, 228, 228);
     padding: 15px 15px 15px 15px;
 }
 .h1_heading{
-    color: #0F609F;
+    color: #5278B0;
     text-align: center;
 }
 .heading{
-    color: #0F609F;
+    color: black;
+}
+.mainContainer {
+    margin-top: 120px;
 }

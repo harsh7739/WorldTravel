@@ -1,38 +1,33 @@
 import React, { useEffect, useState } from "react";
 import Hamburger from "./Hamburger";
-import logo from '../Common/logo/logo2.png'
-// import logo from "./logo/logo.png.png";
-import { Link } from "react-router-dom";
+import logo from "../Common/logo/logo2.png";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("transparent");
-
-  // Function to handle scroll events
+  const location = useLocation();
+  const isAuth = useSelector((store) => store.loginReducer.isAuth);
+  console.log(isAuth, "isAuth");
   const handleScroll = () => {
-    // Get the current scroll position
     const scrollY = window.scrollY;
-
-    // Set the background color based on the scroll position
     if (scrollY > 100) {
-      setBackgroundColor("black"); // Change to your desired background color
+      setBackgroundColor("#4C6FA3");
     } else {
       setBackgroundColor("transparent");
     }
   };
 
-  // Add scroll event listener when the component mounts
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-
+  console.log(location.pathname);
   const handleSidebar = () => {
     setSidebar(!sidebar);
   };
@@ -40,27 +35,45 @@ const Navbar = () => {
   console.log(sidebar);
 
   return (
-    <NAV style={{ backgroundColor : `${backgroundColor}`, transition: "background-color 0.8s ease"}} className="container-fluid nav px-5">
+    <NAV
+      style={{
+        backgroundColor:
+          location.pathname === "/destination"
+            ? "#567EB9"
+            : location.pathname === "/login"
+            ? "#567EB9"
+            : `${backgroundColor}`,
+        transition: "background-color 0.5s ease",
+      }}
+      className="container-fluid nav px-4"
+    >
       <div className="cont">
-        <div className="" >
-          <img className="logo" src={logo} alt="logo" />
-        </div>
-        <div className="d-none d-sm-flex">
-          <Link to="/" className="nav-link">
+        {/* <div className=""> */}
+        <img className="logo" src={logo} alt="logo" />
+        {/* </div> */}
+        <div className="d-none navBar d-sm-flex gap-4">
+          <Link to="/" className="navLinks">
             Home
           </Link>
 
-          <Link to="/about" className="nav-link">
+          <Link to="/about" className="navLinks">
             About
           </Link>
 
-          <Link to="/message" className="nav-link">
+          <Link to="/message" className="navLinks">
             Message
           </Link>
 
-          <Link to="/destination" className="nav-link">
+          <Link to="/destination" className="navLinks">
             Destination
           </Link>
+          {!isAuth ? (
+            <Link to="/login" className="navLinks">
+              Sign Up
+            </Link>
+          ) : (
+            <Link className="navLinks">Profile</Link>
+          )}
         </div>
         <div className="d-sm-none d-flex">
           <div onClick={() => handleSidebar()}>
@@ -68,48 +81,58 @@ const Navbar = () => {
           </div>
           {sidebar ? (
             <SIDEBAR>
-              <div style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  textAlign: "center",
+                  borderRadius: "50%",
+                  backgroundColor: "black",
+                }}
+              >
                 <br />
                 <svg
                   onClick={handleSidebar}
                   style={{ margin: "auto" }}
-                  width="40"
-                  height="40"
+                  width="48"
+                  height="48"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g fill="none" fillRule="evenodd">
-                    <path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z" />
-                    <path
-                      fill="#000000"
-                      d="m12 14.121l5.303 5.304a1.5 1.5 0 0 0 2.122-2.122L14.12 12l5.304-5.303a1.5 1.5 0 1 0-2.122-2.121L12 9.879L6.697 4.576a1.5 1.5 0 1 0-2.122 2.12L9.88 12l-5.304 5.303a1.5 1.5 0 1 0 2.122 2.122L12 14.12Z"
-                    />
-                  </g>
+                  <path
+                    fill="white"
+                    d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6L6.4 19Z"
+                  />
                 </svg>
               </div>
-              <Link style={{ color: "black" }} to="/" className="nav-link">
+              <Link style={{ color: "white" }} to="/" className="navLinks">
                 Home
               </Link>
 
-              <Link style={{ color: "black" }} to="/about" className="nav-link">
+              <Link style={{ color: "white" }} to="/about" className="navLinks">
                 About
               </Link>
 
               <Link
-                style={{ color: "black" }}
+                style={{ color: "white" }}
                 to="/message"
-                className="nav-link"
+                className="navLinks"
               >
                 Message
               </Link>
 
               <Link
-                style={{ color: "black" }}
+                style={{ color: "white" }}
                 to="/destination"
-                className="nav-link"
+                className="navLinks"
               >
                 Destination
               </Link>
+              {!isAuth ? (
+                <Link to="/login" className="navLinks">
+                  Sign Up
+                </Link>
+              ) : (
+                <Link>Profile</Link>
+              )}
             </SIDEBAR>
           ) : null}
         </div>
@@ -124,8 +147,11 @@ const SIDEBAR = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  border: 1px solid white;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+  background-color: black;
   height: 110vh;
   animation: sidebar ease 0.8s;
   text-align: center;
@@ -142,52 +168,61 @@ const SIDEBAR = styled.div`
 
 const NAV = styled.div`
   position: fixed;
+  top: 0;
 
   z-index: 3;
 
   .cont {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 
-  .nav-link {
+  .navLinks {
     color: white;
-    /* font-size: 82%; */
+    font-size: 120%;
     font-weight: bold;
   }
 
+  .navLinks:focus,
+  .navLinks:hover {
+    color: none;
+  }
+
   .logo-container {
-    height : 40px;
+    height: 40px;
     width: 40px;
     border: 1px solid;
   }
 
   .logo {
-    width: 12%;
+    width: 8%;
   }
 
   @media screen and (max-width: 410px) and (min-width: 200px) {
     .logo {
-      width: 20%;
+      width: 16%;
     }
   }
- 
+
   @media screen and (max-width: 820px) and (min-width: 410px) {
     .logo {
-      width: 25%;
+      width: 20%;
     }
   }
 
   @media screen and (max-width: 742px) and (min-width: 577px) {
     .logo {
-      width: 35%;
+      width: 15%;
+    }
+    .navLinks {
+      font-size: 90%;
     }
   }
 
   @media screen and (max-width: 845px) and (min-width: 821px) {
     .logo {
-      width: 25%;
+      width: 20%;
     }
   }
 
@@ -197,24 +232,7 @@ const NAV = styled.div`
     } */
 
     .logo {
-      width: 20%;
+      width: 15%;
     }
   }
 `;
-
-{
-  /* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="">
-            <Link to="/" className="nav-link">Home</Link>
-          </li>
-          <li className="">
-            <Link to="/about" className="nav-link">About</Link>
-          </li>
-          <li className="">
-            <Link to="/message" className="nav-link">Message</Link>
-          </li>
-          <li className="">
-            <Link to="/destination" className="nav-link">Destination</Link>
-          </li>
-        </ul> */
-}
