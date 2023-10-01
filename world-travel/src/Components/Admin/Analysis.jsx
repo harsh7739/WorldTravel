@@ -94,17 +94,17 @@ export default function Analysis() {
                 <div>
                     <h1>635$</h1>
                     <h3>Earn Money</h3>
-                    <div><i style="color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"></i></div>
+                    {/* <div><i style="color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"></i></div> */}
                 </div>
                 <div>
                     <h1>430+</h1>
                     <h3>Completed Tours</h3>
-                    <div><i style="color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"></i></div>
+                    {/* <div><i style="color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"></i></div> */}
                 </div>
                 <div>
                      <h1>12K</h1>
                     <h3>Active Tours</h3>
-                    <div><i style={{"color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"}}></i></div>
+                    {/* <div><i style={{"color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"}}></i></div> */}
                 </div>
             </div>
             <br/>

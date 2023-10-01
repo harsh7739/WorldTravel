@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const DestinationCard = ({ id, image, city, country, rating, locality }) => {
+const DestinationCard = ({ id, image, city, country, rating, estimated_price }) => {
     return (
         <DIV className="">
             <img width={"100%"} src={image} alt={city + country} />
@@ -20,7 +20,8 @@ const DestinationCard = ({ id, image, city, country, rating, locality }) => {
                     <h5>{rating} / 5</h5>
                 </div>
             </div>
-            <h4 className='d-flex align-items-center country' ><svg width="33" height="33" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+            <h4 className='d-flex align-items-center country' >
+                <svg width="33" height="33" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#646262" d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z" />
             </svg>{country}</h4>
             <Link style={{ textDecoration: "none", color: "white", fontWeight: 'bold' }} to={`/destination/${id}`} >
@@ -277,7 +278,7 @@ const DIV = styled.div`
     
     button {
         width: 100%;
-        background-color : rgb(241,9,93);
+        background-color : #567eb9;
         outline : none;
         border: 0;
         border-radius: 5px;
