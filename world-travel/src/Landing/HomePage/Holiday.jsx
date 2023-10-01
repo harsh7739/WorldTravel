@@ -98,7 +98,8 @@ const DIV = styled.div`
     width: 50px;
     /* margin: auto; */
     /* margin-top: 28px; */
-    border: 1px solid rgb(8, 8, 240);
+    
+    border: 1px solid rgb(11, 11, 242);
   }
   /* .contain:hover{
         position: relative;
@@ -152,6 +153,7 @@ const DIV = styled.div`
         box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
         cursor: pointer;
 }
+}
   @media screen and (max-width: 635px) {
     .mainCont {
       width: 90%;
@@ -177,4 +179,4 @@ const DIV = styled.div`
         height: 325px;
     } */
   }
-`;
+`

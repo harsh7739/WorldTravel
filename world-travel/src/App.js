@@ -1,13 +1,14 @@
 // import Login from "./Components/Login"
 import './App.css';
+
 import AllRoutes from './MainRoutes/AllRoutes'
 import Navbar from '../src/Common/Navbar'
 
 function App() {
   return (
     <div className="App" >
-      <Navbar />
-      <AllRoutes />
+     <Navbar />
+     <AllRoutes />
     </div>
   );
 }

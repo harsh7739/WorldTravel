@@ -109,6 +109,9 @@ export default function Analysis() {
                 <div>
                      <h1>12K</h1>
                     <h3>Active Tours</h3>
+
+                    <div><i style="color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"></i></div>
+
                     <div><i style={{"color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"}}></i></div>
         <DIV>
             <h1 style={{ width: "fit-content", padding: "10px" ,marginTop:"-90px"}} ><u>Dashboard</u></h1>
@@ -147,6 +150,7 @@ export default function Analysis() {
                             <FaArrowTrendUp style={{ width: "60px", height: "40px", marginLeft: "-15px" }} />
                             <span style={{ fontSize: "10px", color: "black", fontWeight: "bold" }}>4.5%</span>                        </div>
                     </div>
+
                 </div>
             </div>
 
