@@ -6,24 +6,7 @@ export const loginUser = (email) => (dispatch) => {
   console.log(email)
   dispatch({ type: LOGIN_REQUEST });
 
-  return axios
-    .get(`${URL}/users/${email}`)
-    .then((res) => {
-      const userData = res.data;
-      if (userData) {
-        dispatch({ type: LOGIN_SUCCESS });
-        return userData; // Return user data for further processing
-      } else {
-        dispatch({ type: LOGIN_FAILURE });
-        return null;
-      }
-    })
-    .catch((err) => {
-      console.error("Error fetching user data", err);
-      dispatch({ type: LOGIN_FAILURE });
-      return null;
-    });
-
+  return axios.get(`${URL}/users?email=${email}`)
 };
 
 export const createAccount = (userData) => (dispatch) => {

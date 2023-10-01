@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import adminPic from '../Image/profile-pic.png';
 import logo from "../Image/LogoImage.png";
+// import tour from "../Image/tourism.png"
+import { GiCommercialAirplane } from 'react-icons/gi';
+
 import {
   Tabs,
   TabList,
@@ -16,19 +19,25 @@ import styled from "styled-components";
 import Analysis from "./Analysis";
 import AddProducts from "./AddProducts";
 import AdminUsers from "./AdminUsers";
-
+import { useDispatch } from "react-redux";
+import { getProduct } from "../Admin/AdminReducer/action";
 export default function Admin() {
   const [activeTab, setActiveTab] = useState("dashboard");
-
+  const dispatch = useDispatch()
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
   };
 
   const navigate = useNavigate();
+  const handleClick = () => {
+    dispatch(getProduct())
+}
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'center', float: 'right', marginRight: '20px', marginTop: '20px' }}>
+      
+      <div style={{ display: 'flex', alignItems: 'center',float:"right",marginRight: '20px', marginTop: '20px' }}>
+     
         <div>
           <p>Hey, <b>Admin</b></p>
           <p style={{ marginTop: '-20px', marginLeft: '40px' }}>admin</p>
@@ -49,12 +58,15 @@ export default function Admin() {
         </div>
       </div>
       <DIV>
-        <Tabs
+       
+        <Tabs 
           sx={{ display: "flex" }}
         >
           <TabList style={{
             position: "sticky",
             top: "0",
+            boxShadow : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            width:"260px"
           }}
             sx={{
               display: "flex",
@@ -74,18 +86,21 @@ export default function Admin() {
                 top: "0%"
               }}
             />
+           
             <DIV>
               <Tab className='list-group-item py-2' style={{ marginTop: "20px" }} onClick={() => handleTabChange("dashboard")}>
                 <BiSolidDashboard />
                 <span> Dashboard</span>
               </Tab>
               <Tab className='list-group-item py-2 ' onClick={() => handleTabChange("products")}>
-                <i className="bi bi-table"></i>
-                <span>Products</span>
+                {/* <i className="bi bi-table"></i> */}
+                {/* <img src={tour} alt="" style={{width:"20%",marginLeft:"-65px"}}  className="tour"/> */}
+                <GiCommercialAirplane/>
+                <span>Travels</span>
               </Tab>
               <Tab className='list-group-item py-2'  onClick={() => handleTabChange("addusers")}>
                 <i className='bi bi-people'></i>
-                <span >Add Users</span>
+                <span>Add Users</span>
               </Tab>
               {/* <Tab className='list-group-item py-2' >
                 <i className='bi bi-clipboard-data '></i>
@@ -97,12 +112,12 @@ export default function Admin() {
               </Tab>
             </DIV>
           </TabList>
-          <TabPanels>
+          <TabPanels style={{ marginTop:"70px",marginLeft:"30px"}}>
             <TabPanel >
-              {activeTab === "dashboard" && <Analysis />}
+              {activeTab === "dashboard" && <Analysis/>}
             </TabPanel>
             <TabPanel>
-              {activeTab === "products" && <AddProducts />}
+              {activeTab === "products" && <AddProducts  onClick={handleClick}/>}
             </TabPanel>
             <TabPanel>
             {activeTab === "addusers" && <AdminUsers />}
@@ -110,13 +125,16 @@ export default function Admin() {
           </TabPanels>
         </Tabs>
       </DIV>
+      
     </>
   );
 }
 
 const DIV = styled.div`
+
 .list-group-item
 {
+    font-size: 24px;
     margin-bottom:15px;
 }
   .tab {
@@ -172,4 +190,10 @@ const DIV = styled.div`
     border-radius: 5px;
     font-weight: 600;
   }
+  @media screen and (max-width: 900px) {
+    span{
+        display:none;
+    }
+  }
+
 `;

@@ -87,8 +87,9 @@ export default function LoginAndRegisterPage() {
 
     dispatch(loginUser(email))
       .then((userData) => {
-        if (userData && userData.password === password) {
+        if (userData && userData.data[0].password === password) {
           showSuccessToast("Login Successfully!");
+          dispatch({type:LOGIN_SUCCESS})
           navigate("/");
           document.getElementById("loginform").reset();
         } else {
@@ -103,7 +104,7 @@ export default function LoginAndRegisterPage() {
     let obj = {
     
       name: data.Name,
-       id: data.Email, 
+      email: data.Email, 
       password: data.Password,
 
     };
@@ -206,7 +207,7 @@ export default function LoginAndRegisterPage() {
           <ModalContent style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <DVIV>
 
-              <ModalBody className="modalBody" style={{ width: "400px", backgroundColor: "white", border: "2px solid black" }}>
+              <ModalBody className="modalBody" style={{ width: "400px", backgroundColor: "white",marginTop:"20px"}}>
                 <ModalCloseButton style={{ marginLeft: "360px", marginTop: "15px" }} />
                 <h1
                   className="login-title"
