@@ -1,11 +1,12 @@
-import { ADD_NEW_USERS, DELETE_USER } from "./actionType"
+import { ADD_NEW_USERS, DELETE_USER,ADMIN_HOTELS,EDIT_HOTELS_SUCCESS,ADMIN_HOTEL_SUCCESS } from "./actionType"
 
 const initialState = {
   isLoading : false,
   isError : false,
   destinations : [],
   destination : {},
-  users: []
+  users: [],
+  hotels:[]
 }
 
 export const reducer = (state = initialState, {type, payload}) => {
@@ -23,6 +24,13 @@ export const reducer = (state = initialState, {type, payload}) => {
               destinations : payload
           }
       }
+      case "ADMIN_HOTEL_SUCCESS" : {
+        return {
+            ...state,
+            isLoading : false,
+            hotels : payload
+        }
+    }
       case "ADMIN_PRODUCT_FAILURE" : {
           return {
               ...state,
@@ -58,6 +66,13 @@ export const reducer = (state = initialState, {type, payload}) => {
         destinations : payload
     }
 }
+case "EDIT_HOTELS_SUCCESS" : {
+    return {
+        ...state,
+        isLoading : false,
+        hotels : payload
+    }
+}
 case ADD_NEW_USERS:
     return {
       ...state,
@@ -71,6 +86,15 @@ case DELETE_USER:
         users: payload
 
     }
+    case ADMIN_HOTELS:
+        {
+            return {
+                ...state,
+                isLoading : false,
+                hotels: payload
+            }
+        }
+
       default : {
           return state
       }

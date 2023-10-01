@@ -9,8 +9,10 @@ import {
   ERROR,
   REQUEST,
   DELETE_USER,
-  ADD_NEW_USERS
- 
+  ADD_NEW_USERS,
+ ADMIN_HOTELS,
+ EDIT_HOTELS_SUCCESS,
+ ADMIN_HOTEL_SUCCESS
 } from "./actionType";
 
 export const addProduct = (product) => {
@@ -31,6 +33,25 @@ export const addProduct = (product) => {
   };
 };
 
+export const addHotels = (hotel) => {
+  return async (dispatch) => {
+    dispatch({ type: ADMIN_PRODUCT_REQUEST });
+    try {
+      const response = await axios.post(
+        "https://destination-cw4.onrender.com/hotels",
+        hotel
+      );
+
+      dispatch({ type:ADMIN_HOTELS, payload: response.data });
+      return response.data; // Return the response data
+    } catch (error) {
+      dispatch({ type: ADMIN_PRODUCT_FAILURE });
+      throw error; // Throw the error to handle it in your component
+    }
+  };
+};
+
+
 export const getProduct =(product)  =>{
   return async (dispatch) => {
     dispatch({ type: ADMIN_PRODUCT_REQUEST });
@@ -49,6 +70,25 @@ export const getProduct =(product)  =>{
   };
 };
 
+export const getHotels =(hotel)  =>{
+  return async (dispatch) => {
+    dispatch({ type: ADMIN_PRODUCT_REQUEST });
+    try {
+      const response = await axios.get(
+        "https://destination-cw4.onrender.com/hotels",
+        hotel
+      );
+
+      dispatch({ type: ADMIN_HOTELS, payload: response.data });
+      return response.data; // Return the response data
+    } catch (error) {
+      dispatch({ type: ADMIN_PRODUCT_FAILURE });
+      throw error; // Throw the error to handle it in your component
+    }
+  };
+};
+
+
 export const deleteProduct = (id) => (dispatch) =>{
   dispatch({type:REQUEST});
 
@@ -61,13 +101,36 @@ export const deleteProduct = (id) => (dispatch) =>{
 
 
 };
+export const deleteHotel = (id) => (dispatch) =>{
+  dispatch({type:REQUEST});
 
+  return axios.delete(`https://destination-cw4.onrender.com/hotels/${id}`).then((res)=>{
+    console.log(res.data)
+     dispatch({type:ADMIN_HOTELS})
+  }).catch((err)=>{
+   dispatch({type:ERROR})
+  })
+
+
+};
 export const editProduct = (id,payload) => (dispatch) =>{
   dispatch({type: REQUEST});
 
   return axios.patch(`https://destination-cw4.onrender.com/destinations/${id}`,payload).then((res)=>{
     console.log(res.data)
      dispatch({type:EDIT_SUCCESS})
+  }).catch((err)=>{
+   dispatch({type:ERROR})
+  })
+
+
+};
+export const editHotels = (id,payload) => (dispatch) =>{
+  dispatch({type: REQUEST});
+
+  return axios.patch(`https://destination-cw4.onrender.com/hotels/${id}`,payload).then((res)=>{
+    console.log(res.data)
+     dispatch({type:EDIT_HOTELS_SUCCESS})
   }).catch((err)=>{
    dispatch({type:ERROR})
   })
