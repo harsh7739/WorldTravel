@@ -1,7 +1,21 @@
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
-import styles from "./checkout.module.css"
+
 
 function Checkout(){
+    const [userName,setUserName] = useState("")
+    const [card,setCard] = useState(0)
+    const navigate = useNavigate()
+    const handleClick = ()=>{
+      if(card.length<16 || card.length>16){
+        alert("card No. is not Valid")
+      }
+        else if(userName && card){
+            alert(`Hi, ${userName}, thank you for choosing to stay with us. Your reservation has been confirmed. Please feel free to connect with us for any queries`)
+            navigate("/")
+        }
+    }
     return (
       <DIV>
         <div className="model">
@@ -9,6 +23,16 @@ function Checkout(){
         
       <form className="form">
         <div className="online_pay">
+            <div className="online_indiidual">
+                <img className="online_img" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTGZGXAB9AoLGbroKZUK3KHCAUf03Q3Bh3D5_zp8CXJelx9FSAA" alt="" />
+            </div>
+            <div className="online_indiidual">
+                <img className="online_img" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT7iZ7J8Kuaa9Mm3em8Vlt4j6ambh27ZedGR5ssz4arcSFR8gWa" alt="" />
+            </div>
+
+            <div className="online_indiidual">
+                <img className="online_img" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ4AGjeK0ZoxvqlsNF_GIcSZpscAIvyVQ4VO9Wye3iaCqeJunEJ" alt="" />
+            </div>
 
         </div>
 
@@ -22,12 +46,13 @@ function Checkout(){
          <div className="credit_card_info_form">
             <div className="input_container">
                 <label className="input_label">Card holder full name</label>
-                <input type="text" className="input_field" placeholder="Enter Your Full Name" />
+                <input type="text" className="input_field" placeholder="Enter Your Full Name"
+                value={userName} onChange={(e)=>setUserName(e.target.value)} required/>
             </div>
 
             <div className="input_container">
                 <label className="input_label">Card Number</label>
-                <input type="number" className="input_field" placeholder="0000 0000 0000 0000" />
+                <input type="number" className="input_field"  onChange={(e)=>setCard(e.target.value)} placeholder="0000 0000 0000 0000" required />
 
             </div>
 
@@ -35,14 +60,14 @@ function Checkout(){
                 <label className="input_label">Expiry Date / CVV</label>
                 <div className="split">
 
-                <input type="date" className="input_field" placeholder="01/23" />
-                <input type="password" className="input_field" placeholder="CVV" />
+                <input type="date" className="input_field" placeholder="01/23"  required/>
+                <input type="password" className="input_field" placeholder="CVV" required/>
                 </div>
 
             </div>
 
          </div>
-          <button className="purchase_btn">Checkout</button>
+          <button className="purchase_btn" onClick={handleClick}>Payment</button>
       </form>
       </div>
     </DIV>
@@ -69,6 +94,32 @@ background: #FFFFFF;
  max-width: 450px;
  margin: auto;
 }
+
+.online_pay{
+    width: calc(100% - 40px);
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  gap: 20px;
+  padding: 10px;
+}
+.online_indiidual{
+    /* height: 55px; */
+  background: #fcfbfb;
+  border-radius: 11px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  cursor: pointer;
+}
+.online_img{
+    width: 80%;
+    margin: auto;
+    height: auto;
+    border-radius: 10px;
+}
+
+
 .form {
   display: flex;
   flex-direction: column;
@@ -170,6 +221,9 @@ background: #FFFFFF;
 
 .purchase_btn:hover {
   box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px #0000003a;
+  font-weight: bolder;
+  font-style: italic;
+  
 }
 
 @media screen and (max-width: 850px) {

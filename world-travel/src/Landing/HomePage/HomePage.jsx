@@ -1,6 +1,6 @@
 import Carousel from "../../Components/CaptionCarousel";
 import HomeCarousel from "../Carousel/Carousel";
-import pic from "../Images/homepic.jpg";
+// import pic from "../Images/homepic.jpg";
 import HomeNavbar from "../Routes/HomeNavbar";
 import Holiday from "./Holiday";
 import styles from "./HomePage.module.css";
@@ -19,7 +19,7 @@ function HomePage() {
           src="https://images.unsplash.com/photo-1594814532732-37c265b0dd3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
           alt="hero section"
         />
-
+        
         <div className={styles.centered}>
           <h1 className={styles.heading1st}>
             Let's Explore The World Together!
