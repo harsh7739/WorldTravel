@@ -7,12 +7,14 @@ import Admin from '../Components/Admin/Admin'
 import HomePage from '../Landing/HomePage/HomePage'
 import About from '../Landing/About/About'
 import Message from '../Landing/Message/Message'
+import Login from '../Components/Login'
 
 const AllRoutes = () => {
   return (
     <>
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/message' element={<Message />} />
         <Route path='/about' element={<About />} />

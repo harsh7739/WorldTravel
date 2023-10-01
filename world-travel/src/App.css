@@ -1,3 +1,7 @@
 .navbar-toggler {
     border : 0;
 }
+
+* {
+    font-family: Darker Grotesque, sans-serif;
+}
