@@ -216,7 +216,7 @@ const AdminUsers = () => {
           </TABLECON>
           <TABLECON>
             <Center>
-              <TableContainer w={"70%"} borderRadius={8} boxShadow={"lg"} m={8} p={8} className="container">
+              <TableContainer w={"75%"} borderRadius={8} boxShadow={"lg"} m={8} p={8} className="container">
                 <Table variant="striped" colorScheme="linkedin" >
                   <Thead>
                     <Tr>
