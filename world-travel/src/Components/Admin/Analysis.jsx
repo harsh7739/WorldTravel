@@ -257,4 +257,17 @@ const DIV = styled.div`
       width: 60%;
     }
   }
+
+ img
+ {
+    width:"100px"
+ }
+ .body
+ {
+    width:60%;
+ }
+
+}`;
+
 `;
+
