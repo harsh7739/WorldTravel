@@ -35,7 +35,7 @@ const SingleHotel = () => {
 
 
   return (
-    <DIV className='container-fluid'>
+    <DIV style={{ marginTop : '130px' }} className='container-fluid'>
 
       {
         buy ? <PackageField handleBuy={handleBuy} /> : null
@@ -123,7 +123,7 @@ const SingleHotel = () => {
                 }
               </div>
               <div className='col-6 p-3' >
-                <h5>{ele.name}</h5>
+                <h5 style={{ fontWeight : 'bold' }} >{ele.name}</h5>
                 <p>{ele.comment}</p>
               </div>
             </div>

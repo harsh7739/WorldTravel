@@ -63,10 +63,9 @@ export default function LoginAndRegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
   useEffect(() => {
     const params = queryString.parse(window.location.search);
-    const queryEmail = params.email;
+    const queryEmail = params.email;-
     const queryPassword = params.password;
 
     if (queryEmail && queryPassword) {
@@ -80,10 +79,9 @@ export default function LoginAndRegisterPage() {
       } else {
         showErrorToast("Invalid email or password");
       }
+
     }
   }, []);
-
-
 
   const onLoginSubmit = (dat) => {
     const email = dat.Email;
@@ -312,7 +310,7 @@ export default function LoginAndRegisterPage() {
   );
 }
 const Container = styled.div`
-margin-top : 60px;
+margin-top : 100px;
   display: flex;
   justify-content: center;
   align-items: center;

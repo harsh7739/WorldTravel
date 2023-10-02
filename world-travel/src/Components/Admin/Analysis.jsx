@@ -1,97 +1,94 @@
 import { Center, Tbody } from "@chakra-ui/react";
-import { FaArrowTrendUp } from 'react-icons/fa6';
-import 'font-awesome/css/font-awesome.css';
+import { FaArrowTrendUp } from "react-icons/fa6";
+import "font-awesome/css/font-awesome.css";
 import { Table, Th, Thead, Td, Tr } from "@chakra-ui/react";
 import React from "react";
 
 import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
 } from "recharts";
 import styled from "styled-components";
 
 const data = [
-    {
-        name: "Jan",
-        uv: 4000,
-        pv: 2400,
-        amt: 2400
-    },
-    {
-        name: "Feb",
-        uv: 3000,
-        pv: 1398,
-        amt: 2210
-    },
-    {
-        name: "March",
-        uv: 2000,
-        pv: 9800,
-        amt: 2290
-    },
-    {
-        name: "April",
-        uv: 2780,
-        pv: 3908,
-        amt: 2000
-    },
-    {
-        name: "May",
-        uv: 1890,
-        pv: 4800,
-        amt: 2181
-    },
-    {
-        name: "June",
-        uv: 2390,
-        pv: 3800,
-        amt: 2500
-    },
-    {
-        name: "July",
-        uv: 3490,
-        pv: 4300,
-        amt: 2100
-    },
-    {
-        name: "Aug",
-        uv: 2975,
-        pv: 4900,
-        amt: 2800
-    },
-    {
-        name: "Sep",
-        uv: 2590,
-        pv: 5300,
-        amt: 3100
-    },
-    {
-        name: "Oct",
-        uv: 3900,
-        pv: 3100,
-        amt: 1500
-    },
-    {
-        name: "Nov",
-        uv: 3800,
-        pv: 3700,
-        amt: 2900
-    },
-    {
-        name: "Dec",
-        uv: 3490,
-        pv: 4370,
-        amt: 2170
-    }
-
+  {
+    name: "Jan",
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Feb",
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: "March",
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: "April",
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: "May",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    name: "June",
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
+  },
+  {
+    name: "July",
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: "Aug",
+    uv: 2975,
+    pv: 4900,
+    amt: 2800,
+  },
+  {
+    name: "Sep",
+    uv: 2590,
+    pv: 5300,
+    amt: 3100,
+  },
+  {
+    name: "Oct",
+    uv: 3900,
+    pv: 3100,
+    amt: 1500,
+  },
+  {
+    name: "Nov",
+    uv: 3800,
+    pv: 3700,
+    amt: 2900,
+  },
+  {
+    name: "Dec",
+    uv: 3490,
+    pv: 4370,
+    amt: 2170,
+  },
 ];
-
-export default function Analysis() {
     return (
         <div>
 
@@ -233,37 +230,31 @@ export default function Analysis() {
 }
 
 const DIV = styled.div`
-  width:100%;
-  .tableContent
-  {
-    width:100%
+  width: 100%;
+  .tableContent {
+    width: 100%;
   }
-@media screen and (max-width: 900px) {
-    width:60%;
-    margin-left:30px;
-    .barchart
-    {
-       display:none;
+  @media screen and (max-width: 900px) {
+    width: 60%;
+    margin-left: 30px;
+    .barchart {
+      display: none;
     }
-    .tableContent
-  {
-    width:60%;
-    margin:auto;
-    margin-left:190px;
+    .tableContent {
+      width: 60%;
+      margin: auto;
+      margin-left: 190px;
+    }
+    .headings {
+      font-size: 18px;
+      margin: auto;
+      margin-left: 200px;
+    }
+    img {
+      width: "100px";
+    }
+    .body {
+      width: 60%;
+    }
   }
-  .headings
-  {
-    font-size:18px;
-    margin:auto;
-    margin-left:200px;
-  }
- img
- {
-    width:"100px"
- }
- .body
- {
-    width:60%;
- }
-
-}`;
+`;
