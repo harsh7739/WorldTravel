@@ -66,15 +66,15 @@ const PackageField = ({handleBuy}) => {
                     <path fill="white" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z" />
                 </svg>
             </button>
-            <div className='row field'>
-                <div className='col-md-6 d-flex justify-content-center align-items-center'>
-                    <img src={Navigation} alt="travel" className='' />
+            <div className='row d-flex justify-content-around align-items-center field'>
+                <div className='col-xl-5 d-none d-xl-flex justify-content-center align-items-center'>
+                    <img src={Navigation} width={"80%"} alt="travel" className='' />
                 </div>
-                <div className='col-md-6 d-flex flex-column justify-content-around align-items-center text-center field form'>
+                <div className='col-xl-5 col-12 d-flex flex-column justify-content-around align-items-center text-center field form'>
                     <h2>Hey, User!</h2>
-                    <h5 className='w-75' >You're just one step away from securing your Sydney package. Please complete this form to make your purchase.</h5>
-                    <div className='row d-flex justify-content-between w-75' >
-                        <div className="date my-3">
+                    <h5 className='w-xl-75 w-100' >You're just one step away from securing your Sydney package. Please complete this form to make your purchase.</h5>
+                    <div className='row d-flex justify-content-between w-xl-75 w-100' >
+                        <div className="date my-2">
                             <label htmlFor="checkInDate">Check-In Date:</label>
                             <br />
                             <input
@@ -85,7 +85,7 @@ const PackageField = ({handleBuy}) => {
                                 onChange={handleCheckInChange}
                             />
                         </div>
-                        <div className="date my-3">
+                        <div className="date my-2">
                             <label htmlFor="checkOutDate">Check-Out Date:</label>
                             <br />
                             <input
@@ -98,7 +98,7 @@ const PackageField = ({handleBuy}) => {
                         </div>
                     </div>
                     <div className='d-flex flex-column align-items-center' >
-                        <div className='d-flex align-items-center gap-5 my-3' >
+                        <div className='d-flex align-items-center gap-5 my-2' >
                             <h5>Adults</h5>
                             <div className='d-flex gap-3 align-items-center' >
                                 <button className='operator' onClick={() => (
@@ -112,7 +112,7 @@ const PackageField = ({handleBuy}) => {
                                 </svg></button>
                             </div>
                         </div>
-                        <div className='d-flex align-items-center gap-5 my-3'>
+                        <div className='d-flex align-items-center gap-5 my-2'>
                             <h5>Children</h5>
                             <div className='d-flex gap-3 align-items-center'>
                                 <button className='operator' onClick={() => (
@@ -126,7 +126,7 @@ const PackageField = ({handleBuy}) => {
                                 </svg></button>
                             </div>
                         </div>
-                        <div className='d-flex align-items-center gap-5 my-3'>
+                        <div className='d-flex align-items-center gap-5 my-2'>
                             <h5>Rooms</h5>
                             <div className='d-flex gap-3 align-items-center'>
                                 <button className='operator' onClick={() => (
@@ -153,15 +153,19 @@ export default PackageField
 
 const DIV = styled.div`
     position : fixed;
-    height:  90vh;
+    height: 80vh;
     width: 90vw;
     border: 3px solid black;
     background-color: white;
     z-index : 2;
-    top : 50%;
+    top : 57%;
     left : 50%;
     transform: translate(-50%, -50%);
-    animation: openedit 0.8s;
+    animation: openedit ease 0.8s;
+
+    @media screen and (max-width: 510px) and (min-width: 350px) {
+    height : 90vh;
+  }
 
     @keyframes openedit {
     0% {
@@ -180,7 +184,7 @@ const DIV = styled.div`
    }
 
    .date {
-    width : 40%;
+    width : 60%;
     margin : auto;
     border : 2px solid grey;
     padding : 8px 12px;
@@ -220,7 +224,7 @@ const DIV = styled.div`
         right : 0;
         padding : 3px 15px;
         background-color: black;
-        border-radius: 5px;
+        border-bottom-left-radius: 8px;
     }
 
     .close:hover {

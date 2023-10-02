@@ -5,11 +5,56 @@ import styled from 'styled-components'
 const Hotels = ({ id, name, rating, reviews, telephone, preferences, guest_rating, smoking_allowed, price, imageOne }) => {
     return (
         <DIV className='container-fluid my-3 p-0' >
-            <div className='row'>
-                <div className='col-4' >
+            <img width={"100%"} src={imageOne} alt={name} />
+            <div>
+                <h5 style={{ fontWeight : 'bold', borderBottom: "2px solid #567EB9", width : '70%', margin : 'auto' }} className='name my-3 pb-3'>{name}</h5>
+                <p style={{ fontWeight: "bold" }} >{rating} - {guest_rating} <span style={{ fontWeight: "lighter" }} >({reviews} reviews)</span></p>
+                <div className='d-flex gap-2 align-items-center justify-content-center' style={{ margin: 'auto' }} >
+                    <p>
+                        {
+                            preferences === "Pet-Friendly" ? <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#000000" d="m14 8l3 3v10h-2v-6H8l-2 3v3H4v-6l1-1v-3L2 8l1-1l2 2h2v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V9l1-1m5-3V3l-4 4l3 3l1-1l1 1l2-2l-3-3m-7.5 4.5l-7-7c-.27-.28-.71-.28-1 0c-.28.27-.28.71 0 1l7 7c.27.28.71.28 1 0c.28-.27.28-.71 0-1Z" />
+                            </svg> : preferences === "Pet-Free" ? <svg width="25" height="25" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#000000" d="m18 10l-3-3l4-4v2l3 3l-2 2l-1-1l-1 1m-1 1l-3-3l-1 1h-.8l4.8 4.8V11M2.39 1.73L1.11 3l6 6H5L3 7L2 8l3 3v3l-1 1v6h2v-3l2-3h5.11L15 16.89V21h2v-2.11l3.84 3.84l1.27-1.27L2.39 1.73Z" />
+                            </svg> : <svg width="25" height="25" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#000000" d="M12 6.5a2 2 0 1 0-2-2a2 2 0 0 0 2 2Zm7.5 14h-1v-5a1 1 0 0 0-1-1h-5v-2h5a1 1 0 0 0 0-2h-5v-2a1 1 0 0 0-2 0v7a1 1 0 0 0 1 1h5v5a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2Zm-6.8-1.6a4 4 0 0 1-7.2-2.4a4 4 0 0 1 2.4-3.66A1 1 0 1 0 7.1 11a6 6 0 1 0 7.2 9.1a1 1 0 0 0-1.6-1.2Z" />
+                            </svg>
+                        }
+                    </p>
+                    <p>{preferences}</p>
+                </div>
+                <div className='price w-50 m-auto' >
+                    <p className='d-flex align-items-center justify-content-between my-2' >
+                        <svg width="20" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#028000" d="M437.3 30L202.7 339.3L64 200.7l-64 64L213.3 478L512 94z" />
+                        </svg> Pay at the property
+                    </p>
+                    <p className='d-flex justify-content-between' >
+                        {
+                            smoking_allowed ?
+                                <svg width="20" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#028000" d="M437.3 30L202.7 339.3L64 200.7l-64 64L213.3 478L512 94z" />
+                                </svg> :
+                                <svg width="20" height="20" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#B30018" d="M62 10.6L53.4 2L32 23.4L10.6 2L2 10.6L23.4 32L2 53.4l8.6 8.6L32 40.6L53.4 62l8.6-8.6L40.6 32z" />
+                                </svg>
+                        }
+                        {
+                            smoking_allowed ? <p style={{ color : "#028000" }} >Free Cancellation</p> : <p style={{ color : "#B30018" }}>Free Cancellation</p>
+                        }
+                    </p>
+                        <Link style={{color : "white", fontWeight : 'bold'}} to={`/hotel/${id}`} >
+                            <button>
+                            ₹ {price} /night
+                            </button>
+                        </Link>
+                </div>
+            </div>
+            {/* <div className='row'>
+                <div className='col-lg-4' >
                     <img width={"100%"} src={imageOne} alt="Hotel" />
                 </div>
-                <div style={{ textAlign: 'left' }} className='col-5 d-flex flex-column justify-content-around' >
+                <div style={{ textAlign: 'left' }} className='col-lg-5 d-flex flex-column justify-content-around' >
                     <h5 className='name' >{name}</h5>
                     <p style={{ fontWeight: "bold" }} >{rating} - {guest_rating} <span style={{ fontWeight: "lighter" }} >({reviews} reviews)</span></p>
                     <div className='d-flex align-items-center gap-2' >
@@ -25,7 +70,7 @@ const Hotels = ({ id, name, rating, reviews, telephone, preferences, guest_ratin
                         }
                     </div>
                 </div>
-                <div className='col-3 price ' >
+                <div className='col-lg-3 price ' >
                     <p className='d-flex align-items-center justify-content-between my-3' >
                         <svg width="20" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                             <path fill="#028000" d="M437.3 30L202.7 339.3L64 200.7l-64 64L213.3 478L512 94z" />
@@ -47,11 +92,11 @@ const Hotels = ({ id, name, rating, reviews, telephone, preferences, guest_ratin
                     </p>
                         <Link style={{color : "white", fontWeight : 'bold'}} to={`/hotel/${id}`} >
                             <button>
-                            View Details
+                            ₹ {price}/-
                             </button>
                         </Link>
                 </div>
-            </div>
+            </div> */}
         </DIV>
     )
 }
@@ -65,7 +110,7 @@ const DIV = styled.div`
     border-radius: 12px;
 
     /* 028000 */
-    .name {
+    /* .name {
         font-weight: bold;
     }
 
@@ -80,13 +125,22 @@ const DIV = styled.div`
         border-radius: 12px;
         color : #028000;
     }
+    */
 
     button {
         background-color : #028000;
         outline : none;
         border: 0;
+        width : 80%;
+        margin: auto;
         border-radius: 5px;
         padding: 12px 20px;
+        margin-bottom : 5px;
+    } 
+
+    img {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
 `

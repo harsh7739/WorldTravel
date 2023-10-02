@@ -7,6 +7,9 @@ import Slider from 'react-slick'
  import beach from "../Components/Image/beach.avif";
 import falls from "../Components/Image/falls.avif"
 import mount from "../Components/Image/mount.avif";
+import singapore from "../Components/Image/singapore.jpg"
+import tajmahal from "../Components/Image/tajmahal.jpg"
+import sydney from "../Components/Image/sydney.jpg"
 
 const settings = {
   dots: true,
@@ -25,7 +28,7 @@ export default function Carousel() {
   const [slider, setSlider] =useState([])
 
   const cards  = [
-   mount,falls,beach
+   singapore, tajmahal, sydney
   ]
 
   return (

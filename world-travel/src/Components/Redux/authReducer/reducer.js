@@ -5,6 +5,8 @@ const intialstate = {
     token:"",
     isLoading:false,
     isError:false,
+    login:[],
+    
     
 };
 
@@ -25,6 +27,15 @@ export const reducer = (state= intialstate,{type,payload}) => {
                 isLoading : false,
                 isError : false
             }
+            // case ADMIN_LOGIN:
+            //     return{
+            //         ...state,
+            //         // isAuth :true,
+            //         // token : payload,
+            //         isLoading : false,
+            //         isError : false,
+            //         login:payload
+            //     }
         case LOGIN_FAILURE:
             return {
                 ...state,

@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import styles from "./message.module.css";
+import Footer from "../HomePage/Footer";
 
 function Message() {
   return (
+
     <DIV className={`${styles.mainContainer} container-fluid `}>
       <div className={`${styles.main} row d-flex align-items-center`}>
         <div className="col-md-8 py-5 text-center">
@@ -118,6 +120,7 @@ function Message() {
         </div>
       </div>
     </DIV>
+
   );
 }
 export default Message;
