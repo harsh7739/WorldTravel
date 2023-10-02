@@ -59,25 +59,33 @@ export default function LoginAndRegisterPage() {
     formState: { errors: errors1 },
   } = useForm();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  let adminLogin = async () => {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const queryEmail = params.get('email');
+    const queryPassword = params.get('password');
+
+    if (queryEmail && queryPassword) {
+
+      console.log(`Email: ${queryEmail}, Password: ${queryPassword}`);
+
+      navigate("/admin");
+    } else {
+      console.error("Invalid or missing query parameters");
+    }
+  }, []);let adminLogin = () => {
+    
     const expectedAdminEmail = "admin@example.com";
     const expectedAdminPassword = "admin";
 
     if (email === expectedAdminEmail && password === expectedAdminPassword) {
-      try {
-        await dispatch(adminLogin({ email, password }));
-        navigate("/admin");
-        showSuccessToast("Login Successfully!");
-        onClose();
-      } catch (error) {
-        showErrorToast("An error occurred during admin login.");
-        console.error("Error during admin login:", error);
-      }
+      showSuccessToast("Login Successfully!");
+      navigate("/admin");
+      onClose();
     } else {
-      showErrorToast("Please enter valid admin email and password.");
+      showSuccessToast("Login failure!");
     }
   };
 
@@ -308,7 +316,7 @@ export default function LoginAndRegisterPage() {
   );
 }
 const Container = styled.div`
-margin-top : 60px;
+margin-top : 100px;
   display: flex;
   justify-content: center;
   align-items: center;
