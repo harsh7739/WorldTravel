@@ -95,24 +95,23 @@ export default function Analysis() {
     return (
         <div>
         
-            <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+            {/* <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <div>
                     <h1>635$</h1>
                     <h3>Earn Money</h3>
-                    <div><i style="color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"></i></div>
+                    <div><i style={{color:" #53c3a7"}} className="fa-solid fa-arrow-trend-up fa-fade"></i></div>
                 </div>
                 <div>
                     <h1>430+</h1>
                     <h3>Completed Tours</h3>
-                    <div><i style="color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"></i></div>
+                    <div><i style={{color: "#53c3a7"}} className="fa-solid fa-arrow-trend-up fa-fade"></i></div>
                 </div>
                 <div>
                      <h1>12K</h1>
                     <h3>Active Tours</h3>
 
-                    <div><i style="color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"></i></div>
-
-                    <div><i style={{"color: #53c3a7;" class="fa-solid fa-arrow-trend-up fa-fade"}}></i></div>
+                    <div><i style={{color: "#53c3a7"}} className="fa-solid fa-arrow-trend-up fa-fade"></i></div>
+       </div> */}
         <DIV>
             <h1 style={{ width: "fit-content", padding: "10px" ,marginTop:"-90px"}} ><u>Dashboard</u></h1>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "20px", marginTop: "50px" }}>
@@ -153,7 +152,7 @@ export default function Analysis() {
 
                 </div>
             </div>
-
+            </DIV>
             <br />
             <div className="barchart">
                 <Center style={{ marginTop: "80px" }} >
@@ -245,7 +244,8 @@ export default function Analysis() {
                     </div>
                 </div>
             </Center>
-        </DIV>
+       
+        </div>
     );
 }
 
