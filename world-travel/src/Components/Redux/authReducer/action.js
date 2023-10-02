@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actionTypes";
+import { ADMIN_LOGIN, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actionTypes";
 const URL = "https://destination-cw4.onrender.com";
 
 export const loginUser = (email) => (dispatch) => {
@@ -8,6 +8,7 @@ export const loginUser = (email) => (dispatch) => {
 
   return axios.get(`${URL}/users?email=${email}`)
 };
+
 
 export const createAccount = (userData) => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });

@@ -11,8 +11,8 @@ const Navbar = () => {
   const [backgroundColor, setBackgroundColor] = useState("transparent");
   const location = useLocation();
   const id = useParams()
-  const isAuth = useSelector((store) => store.loginReducer.isAuth);
-  console.log(id, "id");
+  const isAuth = useSelector((store) => store.authReducer.isAuth);
+  console.log(isAuth, "isAuth");
   const handleScroll = () => {
     const scrollY = window.scrollY;
     if (scrollY > 100) {
@@ -56,7 +56,7 @@ const Navbar = () => {
             ? "#567EB9"
             : `${backgroundColor}`,
         transition: "background-color 0.5s ease",
-        display : location.pathname === "/admin" ? "none" : "flex"
+         display:location.pathname === "./admin" ? "none" : "flex"
       }}
       className="container-fluid nav px-4"
     >

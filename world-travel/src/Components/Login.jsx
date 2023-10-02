@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Navigate } from 'react-router-dom';
 import styled from "styled-components";
 import { RiErrorWarningFill } from "react-icons/ri";
 import {
@@ -25,9 +25,10 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import queryString from 'query-string';
 
 import CaptionCarousel from "../Components/CaptionCarousel";
-import { LOGIN_FAILURE, LOGIN_SUCCESS } from "../Components/Redux/authReducer/actionTypes";
+import { ADMIN_LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from "../Components/Redux/authReducer/actionTypes";
 
 export default function LoginAndRegisterPage() {
   const navigate = useNavigate();
@@ -63,31 +64,24 @@ export default function LoginAndRegisterPage() {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const queryEmail = params.get('email');
-    const queryPassword = params.get('password');
+    const params = queryString.parse(window.location.search);
+    const queryEmail = params.email;-
+    const queryPassword = params.password;
 
     if (queryEmail && queryPassword) {
+      // Check if the query parameters match the expected values
+      const expectedAdminEmail = "admin@example.com";
+      const expectedAdminPassword = "admin";
 
-      console.log(`Email: ${queryEmail}, Password: ${queryPassword}`);
+      if (queryEmail === expectedAdminEmail && queryPassword === expectedAdminPassword) {
+        showSuccessToast("Login Successfully!");
+        navigate("/admin"); // Redirect to the admin page
+      } else {
+        showErrorToast("Invalid email or password");
+      }
 
-      navigate("/admin");
-    } else {
-      console.error("Invalid or missing query parameters");
     }
-  }, []);let adminLogin = () => {
-    
-    const expectedAdminEmail = "admin@example.com";
-    const expectedAdminPassword = "admin";
-
-    if (email === expectedAdminEmail && password === expectedAdminPassword) {
-      showSuccessToast("Login Successfully!");
-      navigate("/admin");
-      onClose();
-    } else {
-      showSuccessToast("Login failure!");
-    }
-  };
+  }, []);
 
   const onLoginSubmit = (dat) => {
     const email = dat.Email;
@@ -280,7 +274,7 @@ export default function LoginAndRegisterPage() {
                   <Button style={{ margin: "auto", width: "100px", borderRadius: "20px", height: "50px", marginBottom: "20px" }}
                     background="black"
                     _hover={{ bg: "black" }}
-                    onClick={adminLogin}
+                    onClick={() => window.location.href = `/login?email=${email}&password=${password}`}
                     color="white"
                     type="submit"
                   >

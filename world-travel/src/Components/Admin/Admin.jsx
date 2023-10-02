@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import adminPic from '../Image/profile-pic.png';
-import logo from "../Image/LogoImage.png";
+import logo from "../Image/logo2.png";
 // import tour from "../Image/tourism.png"
 import { GiCommercialAirplane } from 'react-icons/gi';
 
