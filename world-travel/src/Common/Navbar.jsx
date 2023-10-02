@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Hamburger from "./Hamburger";
 import logo from "../Common/logo/logo2.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
+  const [destination, setDestination] = useState(3);
   const [backgroundColor, setBackgroundColor] = useState("transparent");
   const location = useLocation();
-  const isAuth = useSelector((store) => store.loginReducer.isAuth);
+  const id = useParams()
+  const isAuth = useSelector((store) => store.authReducer.isAuth);
   console.log(isAuth, "isAuth");
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -25,7 +27,13 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+
   }, []);
+
+  useEffect(() => {
+    const dest = localStorage.getItem("destinationParamas")
+    setDestination(dest)
+  }, [location.pathname])
 
   console.log(location.pathname);
   const handleSidebar = () => {
@@ -42,8 +50,13 @@ const Navbar = () => {
             ? "#567EB9"
             : location.pathname === "/login"
             ? "#567EB9"
+            : location.pathname === `/destination/${destination}`
+            ? "#567EB9"
+            : location.pathname.slice(0, 7) === `/hotel/`
+            ? "#567EB9"
             : `${backgroundColor}`,
         transition: "background-color 0.5s ease",
+         display:location.pathname === "./admin" ? "none" : "flex"
       }}
       className="container-fluid nav px-4"
     >
@@ -170,7 +183,7 @@ const NAV = styled.div`
   position: fixed;
   top: 0;
 
-  z-index: 3;
+  z-index: 10;
 
   .cont {
     display: flex;
@@ -207,7 +220,7 @@ const NAV = styled.div`
 
   @media screen and (max-width: 820px) and (min-width: 410px) {
     .logo {
-      width: 20%;
+      width: 15%;
     }
   }
 
@@ -222,7 +235,7 @@ const NAV = styled.div`
 
   @media screen and (max-width: 845px) and (min-width: 821px) {
     .logo {
-      width: 20%;
+      width: 15%;
     }
   }
 
@@ -232,7 +245,7 @@ const NAV = styled.div`
     } */
 
     .logo {
-      width: 15%;
+      width: 10%;
     }
   }
 `;

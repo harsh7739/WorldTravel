@@ -30,10 +30,10 @@ const DestinationsContainer = () => {
 
             <div className='container-fluid d-flex pt-0' >
                 <div className='row' >
-                    <div className='col-md-3' >
+                    <div className='col-lg-3' >
                         <Filter />
                     </div>
-                    <div className='col-md-9' >
+                    <div className='col-lg-9' >
                         {
                             isLoading ?
                                 <Loading />
@@ -71,8 +71,16 @@ const DIV = styled.div`
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media screen and (max-width : 1050px) and (min-width : 800px) {
-        
+    @media screen and (max-width : 1051px) and (min-width : 991px) {
+        grid-template-columns: repeat(1, 1fr);
+        margin : 0 40px
+    }
+    @media screen and (max-width : 992px) and (min-width : 400px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width : 590px) and (min-width : 200px) {
+        grid-template-columns: repeat(1, 1fr);
     }
 
 `

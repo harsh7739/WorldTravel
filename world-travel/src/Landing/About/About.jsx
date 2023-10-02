@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import styles from "./about.module.css";
 import worldMap from "./worldmap.png";
+import Footer from "../HomePage/Footer";
 
 function About() {
   return (
+    <>
     <DIV>
       {/* Image for About Us */}
 
@@ -271,6 +273,10 @@ function About() {
         </div>
       </div>
     </DIV>
+    <br />
+    <br />
+    <Footer />
+    </>
   );
 }
 export default About;

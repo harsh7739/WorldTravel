@@ -12,7 +12,8 @@ import {
   ADD_NEW_USERS,
  ADMIN_HOTELS,
  EDIT_HOTELS_SUCCESS,
- ADMIN_HOTEL_SUCCESS
+ ADMIN_HOTEL_SUCCESS,
+ ADMIN_PAGINATION
 } from "./actionType";
 
 export const addProduct = (product) => {
@@ -50,6 +51,8 @@ export const addHotels = (hotel) => {
     }
   };
 };
+
+
 
 
 export const getProduct =(product)  =>{

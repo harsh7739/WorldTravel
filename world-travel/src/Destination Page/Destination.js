@@ -1,10 +1,14 @@
 import React from 'react'
 import DestinationsContainer from './DestinationsContainer'
+import Footer from '../Landing/HomePage/Footer'
 
 const Destination = () => {
   return (
     <div>
-        <DestinationsContainer />
+      <DestinationsContainer />
+      <br />
+      <br />
+      <Footer />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import ReactPaginate from 'react-paginate';
 import { IoMdAddCircle } from "react-icons/io";
 import {
   Tabs,
@@ -161,6 +161,7 @@ const AdminProducts = () => {
     });
   };
 
+ 
   return (
     <div>
       {isError ? ("Error") : ("")}
@@ -179,7 +180,7 @@ const AdminProducts = () => {
 
         <div id="editProduct"  >
           <Center>
-            <TableContainer borderRadius={8} boxShadow={"md"} m={8} p={8} w={{ base: "90%", sm: "90%", md: "90%" }}>
+            <TableContainer borderRadius={8} boxShadow={"md"} m={8} p={8} w={{ base: "100%" }}>
               <Table variant="striped" colorScheme="grey" w="100%" style={{ marginLeft: "-15px" }}>
                 <Thead>
                   <Tr style={{ backgroundColor: "skyblue" }} >
@@ -216,11 +217,13 @@ const AdminProducts = () => {
                       </Tr>
                     ))
                   }
-                  {/* )} */}
+                 
                 </Tbody>
 
 
               </Table>
+         
+
             </TableContainer>
           </Center>
           <Modal isOpen={isOpen} onClose={onClose}>
