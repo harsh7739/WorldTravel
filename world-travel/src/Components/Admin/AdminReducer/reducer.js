@@ -6,7 +6,8 @@ const initialState = {
   destinations : [],
   destination : {},
   users: [],
-  hotels:[]
+  hotels:[],
+  totalItems: 0, 
 }
 
 export const reducer = (state = initialState, {type, payload}) => {
@@ -17,20 +18,14 @@ export const reducer = (state = initialState, {type, payload}) => {
               isLoading : true
           }
       }
-      case "ADMIN_PRODUCT_SUCCESS" : {
-          return {
-              ...state,
-              isLoading : false,
-              destinations : payload
-          }
-      }
-      case "ADMIN_HOTEL_SUCCESS" : {
+      case "ADMIN_PRODUCT_SUCCESS": {
         return {
-            ...state,
-            isLoading : false,
-            hotels : payload
-        }
-    }
+          ...state,
+          isLoading: false,
+          destinations: payload
+          
+        };
+      }
       case "ADMIN_PRODUCT_FAILURE" : {
           return {
               ...state,
