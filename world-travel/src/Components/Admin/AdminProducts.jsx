@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ReactPaginate from 'react-paginate';
+
 import { IoMdAddCircle } from "react-icons/io";
 import {
   Tabs,
