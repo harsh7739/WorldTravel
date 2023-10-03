@@ -77,5 +77,12 @@ Destination Page
 
 Hotel Page  
 
+![Screenshot (168)](https://github.com/harsh7739/gas-scarecrow-3264/assets/115932394/12dead22-86c6-4f56-b499-22cd046d8e97)
 
-![Screenshot (163)](https://github.com/harsh7739/gas-scarecrow-3264/assets/115932394/346710ac-f42d-4ac3-931a-8cb944bd8f29)
+Hotel With Location (map)
+
+
+![Screenshot (169)](https://github.com/harsh7739/gas-scarecrow-3264/assets/115932394/d0c79cc9-119a-41bf-a71a-2ebca797c1f7)
+
+Payment Page 
+![Screenshot (171)](https://github.com/harsh7739/gas-scarecrow-3264/assets/115932394/1e0e9403-8498-4abc-9a80-4dbdd983a1eb)
