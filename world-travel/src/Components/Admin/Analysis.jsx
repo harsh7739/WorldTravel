@@ -269,5 +269,9 @@ const DIV = styled.div`
  {
     width:60%;
  }
+
 `
+
+
+
 

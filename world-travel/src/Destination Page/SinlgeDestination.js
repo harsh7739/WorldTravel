@@ -13,6 +13,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import Hotels from './Hotels';
 import Loading from './Loading';
 import location from '../Common/logo/location.png'
+import Footer from '../Landing/HomePage/Footer';
 
 const SinlgeDestination = () => {
 
@@ -168,7 +169,7 @@ const SinlgeDestination = () => {
           </div>
         </div>
       </div>
-
+        <Footer />
     </DIV>
   )
 }
@@ -192,8 +193,7 @@ margin-top : 130px;
     }
 
 .topDiv {
-  border : 1px solid #567EB9;
-      border-radius : 8px;
+
 }
 
 .hotel-wrapper {

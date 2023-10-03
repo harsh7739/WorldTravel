@@ -8,6 +8,7 @@ import HomePage from '../Landing/HomePage/HomePage'
 import About from '../Landing/About/About'
 import Message from '../Landing/Message/Message'
 import Login from '../Components/Login'
+import Checkout from '../Landing/checkout/Checkout'
 
 const AllRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const AllRoutes = () => {
         <Route path='/destination' element={<Destination />} />
         <Route path='/destination/:id' element={<SinlgeDestination />} />
         <Route path='/hotel/:hotel_id' element={<SingleHotel />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
     </>
   )

@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Carousel from "../../Components/CaptionCarousel";
 import HomeCarousel from "../Carousel/Carousel";
 // import pic from "../Images/homepic.jpg";
@@ -14,7 +15,7 @@ import WhyBook from "./WhyBook";
 function HomePage() {
   return (
     <>
-      <div className={styles.main_cont}>
+      <DIV className={styles.main_cont}>
         {/* <HomeNavbar /> */}
         <img
           className={styles.img_tag}
@@ -22,17 +23,17 @@ function HomePage() {
           alt="hero section"
         />
 
-        <div className={styles.centered}>
-          <h1 className={styles.heading1st}>
+        <div style={{ width : "100%" }} className={styles.centered}>
+          <h1  className={styles.heading1st}>
             Let's Explore The World Together!
           </h1>
-          <h3>Find awesome tour, flights and activities in World</h3>
+          <h2 style={{ fontWeight : 'bold' }} className={styles.heading2nd} >Find awesome tour, flights and activities in World</h2>
         </div>
 
         {/* Top Deal */}
-      </div>
+      </DIV>
       <div className={styles.top_deal}>
-        <h1>Today's Top Deals</h1>
+        <h1 className="head-text" style={{ fontWeight : 'bold', borderBottom : "2px solid #567EB9", paddingBottom : "20px", width : '50%', margin : 'auto', fontSize : "45px" }} >Today's Top Deals</h1>
         {/* <hr className={styles.hrTag}/> */}
       </div>
 
@@ -49,7 +50,7 @@ function HomePage() {
       </div>
 
       <div className={styles.book_with_us}>
-        <h1>Why Book With Us?</h1>
+        <h1 className="head-text" style={{ fontWeight : 'bold', borderBottom : "2px solid #567EB9", paddingBottom : "20px", width : '50%', margin : 'auto', fontSize : "45px" }}  >Why Book With Us?</h1>
         <hr className={styles.hrTag} />
       </div>
 
@@ -57,16 +58,31 @@ function HomePage() {
         <WhyBook />
       </div>
       <div className={styles.book_with_us}>
-        <h1>Holidays & Immigration</h1>
+        <h1 className="head-text" style={{ fontWeight : 'bold', borderBottom : "2px solid #567EB9", paddingBottom : "20px", width : '50%', margin : 'auto', fontSize : "45px" }}  >Holidays & Immigration</h1>
         <hr className={styles.hrTag} />
       </div>
       <Holiday />
-      <div className="container my-4">
-        <h1>Frequently Asked Questions.</h1>
+      <br />
+      <br />
+      <div className="container text-center my-4">
+        <h1 className="head-text" style={{ fontWeight : 'bold', borderBottom : "2px solid #567EB9", paddingBottom : "20px", width : '50%', margin : 'auto', fontSize : "45px" }}  >Frequently Asked Questions.</h1>
+      <br />
+      <br />
         <Accordion />
       </div>
+      <br />
+      <br />
       <Footer />
     </>
   );
 }
 export default HomePage;
+
+
+const DIV = styled.div`
+  @media screen and (max-width : 590px) and (min-width : 200px) {
+    .head-text {
+      font-size: 20px;
+    }
+}
+`

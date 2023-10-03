@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import hotelSign from './redux/images/hotelSign.png'
 import CarouselImage from './CarouselImage'
 import PackageField from './PackageField'
+import Footer from '../Landing/HomePage/Footer'
 
 const SingleHotel = () => {
 
@@ -22,6 +23,7 @@ const SingleHotel = () => {
   console.log(loading)
 
   const handleBuy = () => {
+    localStorage.setItem("price_hotel", hotel?.price)
     setBuy(!buy)
   }
 
@@ -32,13 +34,14 @@ const SingleHotel = () => {
   if (loading) {
     return <Loading />
   }
-
+  
 
   return (
+    <>
     <DIV style={{ marginTop : '130px' }} className='container-fluid'>
 
       {
-        buy ? <PackageField handleBuy={handleBuy} /> : null
+        buy ? <PackageField hotel={hotel?.price} handleBuy={handleBuy} /> : null
       }
       <div className='row'>
         <div className='col-md-6 details ps-5 ' >
@@ -131,6 +134,8 @@ const SingleHotel = () => {
         }
       </div>
     </DIV>
+      <Footer />
+    </>
   )
 }
 

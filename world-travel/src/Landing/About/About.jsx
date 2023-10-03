@@ -8,10 +8,9 @@ function About() {
     <>
     <DIV>
       {/* Image for About Us */}
-
       <div className="container-fluid herosection">
-        <div className="row">
-          <div className="col-lg-5 d-flex flex-column align-items-center justify-content-beteen">
+        <div className="row ">
+          <div className="col-lg-5 ms-4 d-flex flex-column align-items-center justify-content-beteen">
             <p className="p-3" style={{ color: "white" }}>
               World Travel is a web application that allows travel users to find
               and book accomodation, activities and like-minded around the

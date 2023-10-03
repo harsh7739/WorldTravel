@@ -1,8 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components'
 
 
 const Filter = () => {
+
+const [searchParams, setSearchParams] = useSearchParams();
+const [locality, setLocality] = useState(searchParams.getAll("category") || [])
+const [order, setOrder] = useState(searchParams.get("order") || "");
+
+
+
+const handleOrder = (e) => {
+  const {value} = e.target;
+  setOrder(value)
+}
+
+const handleFilter = (e) => {
+  const {value} = e.target;
+  let newLocality = [...locality];
+
+  if(newLocality.includes(value)) {
+    newLocality = newLocality.filter((el) => el !== value)
+  }
+  else {
+    newLocality.push(value);
+  }
+  setLocality(newLocality)
+}
+
+useEffect(() => {
+  let params = {
+    "locality" : locality
+  }
+  order && (params.order = order);
+  setSearchParams(params)
+}, [locality, order])
+
   return (
     <FILTER className="p-4" >
       <HEADING >Filters  <span>For Better Search</span> </HEADING>
@@ -17,7 +51,7 @@ const Filter = () => {
         <label className="container d-flex justify-content-between w-100 ">
           <h5>Beachfront</h5>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" onChange={handleFilter} value={"Beachfront"} checked={locality.includes("Beachfront")} />
             <svg viewBox="0 0 64 64" height="2em" width="2em">
               <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" className="path"></path>
             </svg>
@@ -26,7 +60,7 @@ const Filter = () => {
         <label className="container d-flex justify-content-between w-100 ">
           <h5>Trending</h5>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" onChange={handleFilter} value={"Trending"}  checked={locality.includes("Trending")} />
             <svg viewBox="0 0 64 64" height="2em" width="2em">
               <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" className="path"></path>
             </svg>
@@ -35,7 +69,7 @@ const Filter = () => {
         <label className="container d-flex justify-content-between w-100 ">
           <h5>Country Side</h5>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" onChange={handleFilter} value={"Country Side"} checked={locality.includes("Country Side")} />
             <svg viewBox="0 0 64 64" height="2em" width="2em">
               <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" className="path"></path>
             </svg>
@@ -44,27 +78,25 @@ const Filter = () => {
         <label style={{ marginBottom: '10px' }} className="container d-flex justify-content-between w-100 ">
           <h5>Farms</h5>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" onChange={handleFilter} value={"Farms"} checked={locality.includes("Farms")} />
             <svg viewBox="0 0 64 64" height="2em" width="2em">
               <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" className="path"></path>
             </svg>
           </div>
         </label>
       </CHECKBOX>
-      <SORT className='d-flex flex-column'>
+      <SORT className='d-flex flex-column' onChange={handleOrder}>
         <h5 style={{ fontWeight: 'bold' }} >Sort by Rating</h5>
         <label className="radio-button">
-          <input type="radio" name="example-radio" value="option1" />
+          <input type="radio" name="example-radio" value={"asc"} defaultChecked={order === 'asc'}  />
           <span className="radio"></span>
           Ascending Order
         </label>
-
         <label className="radio-button">
-          <input type="radio" name="example-radio" value="option2" />
+          <input type="radio" name="example-radio" value={"desc"} defaultChecked={order === 'desc'}  />
           <span className="radio"></span>
           Descending Order
         </label>
-
       </SORT>
     </FILTER>
   )
