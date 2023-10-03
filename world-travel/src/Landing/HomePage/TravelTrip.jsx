@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 function TravelTrip() {
   return (
-    <DIV className="shadow d-flex justify-content-between align-items-center">
-      {/* <img src="https://images.unsplash.com/photo-1510917203414-2e642e75d3ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="" /> */}
-      <div className="row d-flex justify-content-between align-items-center">
-        <div className="col-md-6  problems">
+    <DIV>
+      {/* <img width={"100%"} src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSMUqvDnEaHaCMQOoZQ0USu49RckjfA1o1vROlRHd75Z9bCJX0S" alt="" /> */}
+      {/* <div className="row d-flex justify-content-between align-items-center">
+        <div className="col-md-6 problems">
           <h1 className="my-4 ps-5">Problems</h1>
           <div className="texts" >
             <p className="my-3">
@@ -36,15 +36,16 @@ function TravelTrip() {
               well as people who want to travel while saving money.</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </DIV>
   );
 }
 export default TravelTrip;
 
 const DIV = styled.div`
-  color: white;
 
+  /* color: white;
+  
   padding : 30px;
   margin-top: 25px;
   background-image: url("https://images.unsplash.com/photo-1557307496-494c7611661a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
@@ -54,14 +55,14 @@ const DIV = styled.div`
   box-shadow: 10px 10px 5px #ccc;
       -moz-box-shadow: 10px 10px 5px #ccc;
       -webkit-box-shadow: 10px 10px 5px #ccc;
-      -khtml-box-shadow: 10px 10px 5px #ccc;
+      -khtml-box-shadow: 10px 10px 5px #ccc; */
 
   /* img {
     height: 100%;
     width: 100%;
   } */
 
-  .problems, .goals {
+  /* .problems, .goals {
     height : 70%;
   }
 
@@ -72,12 +73,12 @@ const DIV = styled.div`
   }
 
   p {
-    padding : 10px 2px;
+    padding : 10px;
     font-weight: bold;
   }
 
   .texts {
     backdrop-filter: blur(7px);
-  }
+  } */
 
 `;

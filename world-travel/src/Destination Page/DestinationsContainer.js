@@ -6,6 +6,7 @@ import DestinationCard from './DestinationCard';
 import styled from 'styled-components'
 import Filter from './Filter';
 import Loading from './Loading';
+import { useSearchParams } from 'react-router-dom';
 
 const DestinationsContainer = () => {
 
@@ -17,10 +18,22 @@ const DestinationsContainer = () => {
     console.log(isLoading, isError, destinations)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getDestination)
-    }, [])
+    const [searchParams] = useSearchParams()
+  const paramsObj = {
+    params: {
+      locality : searchParams.getAll("locality"),
+      _order : searchParams.get("order"),
+      _sort  : searchParams.get("order") ? "rating" : null
+    }
+  }
 
+    useEffect(() => {
+        dispatch(getDestination(paramsObj))
+    }, [searchParams])
+
+// if(isLoading) {
+//     return <Loading />
+// }
 
     return (
         <>
@@ -35,9 +48,9 @@ const DestinationsContainer = () => {
                     </div>
                     <div className='col-lg-9' >
                         {
-                            isLoading ?
-                                <Loading />
-                                :
+                            // isLoading ?
+                            //     <Loading />
+                            //     :
                                 <div>
                                     <div className='my-3' style={{ textAlign: 'center' }} >
                                         <HEADING >Popular Destination <span>For you</span> </HEADING>

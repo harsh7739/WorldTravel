@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "../Images/logo2.png"
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const Footer = () => {
@@ -175,7 +175,6 @@ const DIV = styled.div`
 }
 .footer-widget ul li {
   display: inline-block;
-  float: left;
   width: 50%;
   margin-bottom: 12px;
 }

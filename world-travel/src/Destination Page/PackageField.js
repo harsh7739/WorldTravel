@@ -2,15 +2,17 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Navigation from './redux/images/Navigation.png'
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const currentDate = new Date().toISOString().split('T')[0];
 
-const PackageField = ({handleBuy}) => {
+const PackageField = ({handleBuy,hotel}) => {
 
     const [checkInDate, setCheckInDate] = useState(currentDate);
     const [checkOutDate, setCheckOutDate] = useState(currentDate);
     const [adult, setAdult] = useState(1);
     const [child, setChild] = useState(1);
+    const [price, setPrice] = useState(22099)
     const [room, setRoom] = useState(1);
     const [days, setDays] = useState(1);
     const handleCheckInChange = (e) => {
@@ -30,9 +32,11 @@ const PackageField = ({handleBuy}) => {
     // 1000 milliseconds in a second, 3600 seconds in an hour, 24 hours in a day
 
     useEffect(() => {
+        const p = localStorage.getItem("hotel_price")
+        setPrice(Number(p));
         const checkInDateObj = new Date(checkInDate);
         const checkOutDateObj = new Date(checkOutDate);
-
+        
         const timeDifference = checkOutDateObj.getTime() - checkInDateObj.getTime();
         const daysDifference = timeDifference / (1000 * 3600 * 24);
 
@@ -55,7 +59,7 @@ const PackageField = ({handleBuy}) => {
 
     }, [checkInDate, checkOutDate, adult, child, room])
 
-    console.log(days)
+    console.log(price)
 
 
     return (
@@ -141,7 +145,9 @@ const PackageField = ({handleBuy}) => {
                             </div>
                         </div>
                     </div>
-                    <button className="pay" >Price Rs.{days}</button>
+                    <button className="pay" >
+                        <Link to="/checkout" >Price Rs.{hotel * days}</Link>
+                    </button>
                 </div>
             </div>
         </DIV>
