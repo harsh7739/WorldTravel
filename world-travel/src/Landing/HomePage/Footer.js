@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Footer = () => {
 
-  const isAuth = useSelector((store) => store.loginReducer.isAuth);
+  const isAuth = useSelector((store) => store.authReducer.isAuth);
 
   return (
     <DIV>
