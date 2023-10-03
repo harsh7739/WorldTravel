@@ -2,9 +2,9 @@
 
 import axios from "axios"
 
-export const getDestination = (dispatch) => {
+export const getDestination = (paramsObj) => (dispatch) => {
     dispatch({type : "GET_REQUEST"})
-    axios.get(`https://destination-cw4.onrender.com/destinations`).then((res) => {
+    axios.get(`https://destination-cw4.onrender.com/destinations`, paramsObj).then((res) => {
         dispatch({type : "GET_SUCCESS", payload : res.data})
     }).catch((err) => {
         dispatch({type : "GET_FAILURE"})

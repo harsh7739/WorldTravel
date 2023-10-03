@@ -11,7 +11,6 @@ import {
   Button,
   Center,
 } from "@chakra-ui/react";
-import { Avatar, Rate, Space, Typography } from "antd";
 import {
   Table,
   Thead,

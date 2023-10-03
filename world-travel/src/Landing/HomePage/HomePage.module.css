@@ -12,7 +12,7 @@
 
 .centered {
   position: absolute;
-  top: 12%;
+  top: 11%;
   left: 50%;
   font-weight: bold;
   transform: translate(-50%, -50%);
@@ -20,7 +20,9 @@
   text-align: center;
 }
 .heading1st {
-  font-size: 47px;
+  font-size: 60px;
+  width: 100%;
+  font-weight : bold;
 }
 .top_deal {
   text-align: center;
@@ -50,4 +52,28 @@
         color: white;
         text-align: center;
       }
+}
+
+@media screen and (max-width : 1000px) and (min-width : 662px) {
+  .heading1st {
+    font-size: 40px;
+  }
+  .heading2nd {
+    font-size: 20px;
+  }
+  .centered {
+    top : 6%;
+  }
+}
+
+@media screen and (max-width : 662px) and (min-width : 200px) {
+  .heading1st {
+    font-size: 30px;
+  }
+  .heading2nd {
+    font-size: 20px;
+  }
+  .centered {
+    top : 5%;
+  }
 }

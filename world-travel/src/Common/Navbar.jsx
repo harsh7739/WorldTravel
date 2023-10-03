@@ -50,13 +50,15 @@ const Navbar = () => {
             ? "#567EB9"
             : location.pathname === "/login"
             ? "#567EB9"
+            : location.pathname === "/checkout"
+            ? "#567EB9"
             : location.pathname === `/destination/${destination}`
             ? "#567EB9"
             : location.pathname.slice(0, 7) === `/hotel/`
             ? "#567EB9"
             : `${backgroundColor}`,
         transition: "background-color 0.5s ease",
-         display:location.pathname === "./admin" ? "none" : "flex"
+         display : location.pathname === "/admin" ? "none" : "flex"
       }}
       className="container-fluid nav px-4"
     >
