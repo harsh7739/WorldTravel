@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Footer = () => {
 
-  const isAuth = useSelector((store) => store.loginReducer.isAuth);
+  const isAuth = useSelector((store) => store.authReducer.isAuth);
 
   return (
     <DIV>
@@ -175,7 +175,6 @@ const DIV = styled.div`
 }
 .footer-widget ul li {
   display: inline-block;
-  float: left;
   width: 50%;
   margin-bottom: 12px;
 }

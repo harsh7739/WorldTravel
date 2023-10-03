@@ -65,7 +65,7 @@ export default function LoginAndRegisterPage() {
 
   useEffect(() => {
     const params = queryString.parse(window.location.search);
-    const queryEmail = params.email;-
+    const queryEmail = params.email;
     const queryPassword = params.password;
 
     if (queryEmail && queryPassword) {
