@@ -3,7 +3,8 @@ import Hamburger from "./Hamburger";
 import logo from "../Common/logo/logo2.png";
 import { Link, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../Components/Redux/authReducer/action";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -41,6 +42,11 @@ const Navbar = () => {
   };
 
   console.log(sidebar);
+
+  const dispatch = useDispatch()
+  const handleLogout = () => {
+    dispatch(logout()); 
+  };
 
   return (
     <NAV
@@ -87,7 +93,7 @@ const Navbar = () => {
               Sign Up
             </Link>
           ) : (
-            <Link className="navLinks">Profile</Link>
+            <Link className="navLinks" onClick={handleLogout}>Logout</Link>
           )}
         </div>
         <div className="d-sm-none d-flex">
@@ -146,7 +152,7 @@ const Navbar = () => {
                   Sign Up
                 </Link>
               ) : (
-                <Link>Profile</Link>
+                <Link onClick={handleLogout}>Logout</Link>
               )}
             </SIDEBAR>
           ) : null}

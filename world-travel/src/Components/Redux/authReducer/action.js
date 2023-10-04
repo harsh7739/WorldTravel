@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADMIN_LOGIN, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actionTypes";
+import { ADMIN_LOGIN, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS, SIGNUP_SUCCESS } from "./actionTypes";
 const URL = "https://destination-cw4.onrender.com";
 
 export const loginUser = (email) => (dispatch) => {
@@ -23,3 +23,7 @@ export const createAccount = (userData) => (dispatch) => {
       dispatch({ type: LOGIN_FAILURE });
     });
 };
+
+export const logout = ()=>(dispatch)=>{
+  dispatch({ type: LOGOUT_SUCCESS });
+}
