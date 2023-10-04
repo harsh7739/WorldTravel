@@ -190,7 +190,7 @@ const AdminDestinations = () => {
                             ) : (
                                 <div id="editProduct"  >
                                     <Center>
-                                        <TableContainer borderRadius={8} boxShadow={"md"} m={8} p={8} w={{ base: "100%", sm: "100%", md: "100%" }}>
+                                        <TableContainer borderRadius={8} boxShadow={"md"} m={8} p={8} w={{ base: "100%" }}>
                                             <Table variant="striped" colorScheme="grey" w="100%" style={{ marginLeft: "-15px" }}>
                                                 <Thead>
                                                     <Tr style={{ backgroundColor: "skyblue" }} >
