@@ -17,7 +17,7 @@ import { useToast } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { loginUser, createAccount } from "../Components/Redux/authReducer/action";
+import { loginUser, createAccount, logout } from "../Components/Redux/authReducer/action";
 import {
   Modal,
   ModalOverlay,
@@ -122,7 +122,9 @@ export default function LoginAndRegisterPage() {
     document.getElementById("ca").reset();
   };
 
-
+  const handleLogout = () => {
+    dispatch(logout()); 
+  };
 
   return (
 
