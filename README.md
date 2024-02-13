@@ -60,6 +60,12 @@ Login  Page
 
 ![Screenshot (155)](https://github.com/harsh7739/gas-scarecrow-3264/assets/115932394/74b83ac0-d856-4147-8cfa-2cf1d4ec4dc0)
 
+
+Admin login credentials
+
+Username :- admin@example.com
+Password :- admin
+
 SignUp Page
 
 
